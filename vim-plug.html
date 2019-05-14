@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim插件管理,vim-plug,vim按需加载,vim-vundle,vim中文教程,vim教程网">
+   
+  
+  <meta name="description" content="vim插件管理工具vim-plug安装方法和vim-plug配置说明，配置vim-plug按需加载和指定对特定文件类型加载对应插件，github安装vim-plug和插件，PlugInstall安装插件，PlugClean卸装插件。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-plug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim插件/">Vim插件</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2014-02-02
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="https://vim.ink/vim-plugin-manager.html">Vundle</a>是一款非常出名且历史悠久的Vim插件管理工具。但随着安装的vim插件越来越多，使用Vundle来管理这些插件时效率变得越来越低，vim启动耗时也越来越大。</p>
+<p>而<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">vim-plug</a>是一款非常轻量又高效的vim插件管理工具。它支持全异步、多线程并行安装插件，支持git分支、标签等，可以对插件进行回滚更新、还支持<strong>按需加载</strong>插件(On-demand loading)，可以指定对特定文件类型加载对应vim插件，大大加快了vim启动时间。</p>
+<h4 id="1-1-安装vim-plug插件管理器"><a href="#1-1-安装vim-plug插件管理器" class="headerlink" title="1.1 安装vim-plug插件管理器"></a>1.1 安装vim-plug插件管理器</h4><p>vim-plug使用github进行托管和维护，只需要下载对应的 <a href="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" target="_blank" rel="noopener">plug.vim</a> 文件并保存到 <strong>autoload</strong> 目录即可完成安装。</p>
+<p>ubuntu系统下可使用以下命令快速安装vim-plug。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.vim/<span class="built_in">autoload</span>/</span><br><span class="line"><span class="built_in">cd</span> ~/.vim/<span class="built_in">autoload</span>/</span><br><span class="line">wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</span><br></pre></td></tr></table></figure>
+<p>或使用curl工具来简化下载过程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fLo ~/.vim/<span class="built_in">autoload</span>/plug.vim --create-dirs \</span><br><span class="line">    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-vim-plug配置介绍"><a href="#1-2-vim-plug配置介绍" class="headerlink" title="1.2 vim-plug配置介绍"></a>1.2 vim-plug配置介绍</h4><p>使用vim-plug安装vim插件的方法与另外一个著名的<a href="https://vim.ink/vim-plugin-manager.html">vim插件管理器Vundle</a>非常相似，只需要在vim配置文件 <code>~/.vimrc</code> 增加以 <code>call plug#begin(PLUGIN_DIRECTORY)</code> 开始，并以 <code>plug#end()</code> 结束的配置段即可。</p>
+<p>下面是一个典型的vim-plug的配置实例，使用了多种vim-plug相关的配置形式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">call plug<span class="comment">#begin('~/.vim/plugged')</span></span><br><span class="line">Plug <span class="string">'junegunn/vim-easy-align'</span></span><br><span class="line">Plug <span class="string">'https://github.com/junegunn/vim-github-dashboard.git'</span></span><br><span class="line">Plug <span class="string">'SirVer/ultisnips'</span> | Plug <span class="string">'honza/vim-snippets'</span></span><br><span class="line">Plug <span class="string">'scrooloose/nerdtree'</span>, &#123; <span class="string">'on'</span>:  <span class="string">'NERDTreeToggle'</span> &#125;</span><br><span class="line">Plug <span class="string">'tpope/vim-fireplace'</span>, &#123; <span class="string">'for'</span>: <span class="string">'clojure'</span> &#125;</span><br><span class="line">Plug <span class="string">'rdnetto/YCM-Generator'</span>, &#123; <span class="string">'branch'</span>: <span class="string">'stable'</span> &#125;</span><br><span class="line">Plug <span class="string">'nsf/gocode'</span>, &#123; <span class="string">'tag'</span>: <span class="string">'v.20150303'</span>, <span class="string">'rtp'</span>: <span class="string">'vim'</span> &#125;</span><br><span class="line">Plug <span class="string">'junegunn/fzf'</span>, &#123; <span class="string">'dir'</span>: <span class="string">'~/.fzf'</span>, <span class="string">'do'</span>: <span class="string">'./install --all'</span> &#125;</span><br><span class="line">Plug <span class="string">'~/my-prototype-plugin'</span></span><br><span class="line">call plug<span class="comment">#end()</span></span><br></pre></td></tr></table></figure>
+<p>在上面的vim-plug配置中，以 <code>call plug#begin(&#39;~/.vim/plugged&#39;)</code> 标识vim-plug配置的开始并显式指定vim插件的存放路径为 <em>~/.vim/plugged</em>；</p>
+<p><code>Plug &#39;junegunn/vim-easy-align&#39;</code> 使用缩写形式指定了插件在github的地址 (<a href="[https://github.com/junegunn/vim-easy-align">https://github.com/junegunn/vim-easy-align</a>)；</p>
+<p><code>Plug &#39;https://github.com/junegunn/vim-github-dashboard.git&#39;</code> 则用完整的URL指定插件在github的位置；</p>
+<p><code>Plug &#39;SirVer/ultisnips&#39; | Plug &#39;honza/vim-snippets&#39;</code> 用 | 将两个vim插件写在同一行配置中；</p>
+<p><code>Plug &#39;scrooloose/nerdtree&#39;, { &#39;on&#39;:  &#39;NERDTreeToggle&#39; }</code> 使用 <strong>按需加载</strong>，表明只有在 <code>NERDTreeToggle</code> 命令被调用时, 对应的插件才会被加载；</p>
+<p><code>Plug &#39;tpope/vim-fireplace&#39;, { &#39;for&#39;: &#39;clojure&#39; }</code> 使用 <strong>按需加载</strong>，表明只有编辑 <em>clojure</em> 类型的文件时该插件才会被打开；</p>
+<p><code>Plug &#39;rdnetto/YCM-Generator&#39;, { &#39;branch&#39;: &#39;stable&#39; }</code> 显式指定使用YCM-Generator插件的 <em>stable</em> 分支；</p>
+<p><code>Plug &#39;nsf/gocode&#39;, { &#39;tag&#39;: &#39;v.20150303&#39;, &#39;rtp&#39;: &#39;vim&#39; }</code> 指定插件所用git标签，rtp描述了包含vim插件的子目录；</p>
+<p><code>Plug &#39;junegunn/fzf&#39;, { &#39;dir&#39;: &#39;~/.fzf&#39;, &#39;do&#39;: &#39;./install --all&#39; }</code> 用 <strong>dir</strong> 选项单独指定了该插件存放的目录，<strong>do</strong>选项用于 Post-update hook，指定在安装或者更新完插件后所需要执行的额外操作；</p>
+<p><code>Plug &#39;~/my-prototype-plugin&#39;</code> 表示不用github托管的本地vim插件；</p>
+<p><code>call plug#end()</code> 用于标识vim-plug配置的结束。</p>
+<hr>
+<p>总结上面的vim-plug配置，可以发现vim-plug支持以下配置项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branch</code>/<code>tag</code>/<code>commit</code></td>
+<td>所用插件git仓库的Branch/tag/commit</td>
+</tr>
+<tr>
+<td><code>rtp</code></td>
+<td>包含vim插件的子目录</td>
+</tr>
+<tr>
+<td><code>dir</code></td>
+<td>该vim插件的定制化目录 (Custom directory)</td>
+</tr>
+<tr>
+<td><code>as</code></td>
+<td>给vim插件取别名</td>
+</tr>
+<tr>
+<td><code>do</code></td>
+<td>Post-update hook，某些vim插件在完成安装或更新后，需要执行额外的操作，可以使用 do 选项指定具体的操作或函数</td>
+</tr>
+<tr>
+<td><code>on</code></td>
+<td>按需加载: vim命令或<code>&lt;Plug&gt;</code>-mappings</td>
+</tr>
+<tr>
+<td><code>for</code></td>
+<td>按需加载: 文件类型</td>
+</tr>
+<tr>
+<td><code>frozen</code></td>
+<td>Do not update unless explicitly specified</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注</strong>：<code>do</code> 选项的操作如果是以 <code>:</code> 开头，则表示其为vim命令，例如: <code>Plug &#39;fatih/vim-go&#39;, { &#39;do&#39;: &#39;:GoInstallBinaries&#39; }</code></p>
+<h4 id="1-3-使用vim-plug安装vim插件"><a href="#1-3-使用vim-plug安装vim插件" class="headerlink" title="1.3 使用vim-plug安装vim插件"></a>1.3 使用vim-plug安装vim插件</h4><p>在Vim命令行模式下，使用命令 <code>:PlugInstall</code> 可安装vim配置文件中所有配置的vim插件；也可以使用 <code>PlugInstall [name ...]</code> 来指定安装某一个或某几个vim插件。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1fufgn51ja1g20zl0i2tyf.gif" alt="vim-plug安装插件"></p>
+<p><code>:PlugStatus</code> 可查看vim插件的当前状态，<code>:PlugUpdate [name ...]</code> 用于安装或更新对应vim插件，而vim-plug本身的更新则使用命令 <code>:PlugUpgrade</code>。</p>
+<p>vim-plug的命令列表如下所示。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlugInstall [name ...] [#threads]</code></td>
+<td>安装插件</td>
+</tr>
+<tr>
+<td><code>PlugUpdate [name ...] [#threads]</code></td>
+<td>安装或更新vim插件</td>
+</tr>
+<tr>
+<td><code>PlugClean[!]</code></td>
+<td>卸装未使用的目录 (bang version will clean without prompt)</td>
+</tr>
+<tr>
+<td><code>PlugUpgrade</code></td>
+<td>更新vim-plug自身</td>
+</tr>
+<tr>
+<td><code>PlugStatus</code></td>
+<td>查看vim插件的状态</td>
+</tr>
+<tr>
+<td><code>PlugDiff</code></td>
+<td>对比上次PlugUpdate的更改 (Examine changes from the previous update and the pending changes)</td>
+</tr>
+<tr>
+<td><code>PlugSnapshot[!] [output path]</code></td>
+<td>保存当前插件的镜像副本到指定目录 (Generate script for restoring the current snapshot of the plugins)</td>
+</tr>
+</tbody>
+</table>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-plug.html&title=《Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)》 — vim教程网&pic=images/vim39.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-plug.html&title=《Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-plug.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)》 — vim教程网&url=https://vim.ink/vim-plug.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-plug.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-plug.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-autopep8-plugin.html" title="Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用" target="_blank">Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/jedi-vim-plugin.html" title="Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法" target="_blank">Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indentLine-plugin.html" title="Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用" target="_blank">Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-youcompleteme-install.html" title="Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)" target="_blank">Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delimitmate-plugin.html" title="Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)" target="_blank">Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/10-light-vim-color-scheme.html" title="2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)" target="_blank">2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctrlp-plugin.html" title="Vim模糊搜索插件ctrlp使用方法-Vim插件(12)" target="_blank">Vim模糊搜索插件ctrlp使用方法-Vim插件(12)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fzf-plugin.html" title="模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)" target="_blank">模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-gutentags.html" title="Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)" target="_blank">Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-powerline.html" title="使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)" target="_blank">使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-keycastow.html" title="windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)" target="_blank">windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-nerdtree-plugin.html" title="Vim插件NERD tree介绍与使用方法-Vim入门教程(26)" target="_blank">Vim插件NERD tree介绍与使用方法-Vim入门教程(26)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-surround-plugin.html" title="Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)" target="_blank">Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fswitch.html" title="Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)" target="_blank">Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctag.html" title="Vim使用ctags实现函数跳转-Vim入门教程(13)" target="_blank">Vim使用ctags实现函数跳转-Vim入门教程(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plugin-manager.html" title="Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)" target="_blank">Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-color-schemes.html" title="15个著名的Vim配色方案整理-Vim入门教程(7)" target="_blank">15个著名的Vim配色方案整理-Vim入门教程(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-安装vim-plug插件管理器"><span class="post-toc-text">1.1 安装vim-plug插件管理器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-vim-plug配置介绍"><span class="post-toc-text">1.2 vim-plug配置介绍</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-3-使用vim-plug安装vim插件"><span class="post-toc-text">1.3 使用vim-plug安装vim插件</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-plug.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

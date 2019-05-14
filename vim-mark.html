@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim位置标记mark详解-Vim入门教程(34) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim标记,vim标注,vim mark,vim文档跳转,vim位置标记,vim视频教程">
+   
+  
+  <meta name="description" content="Vim位置标记命令mark用于在vim文档中手动设置标注，用于实现文档中的快速跳转。可跳到位置标记所在行并把光标置于该行第一个非空白字符上，也可同时恢复标记原始行、列的位置。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-mark" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vim位置标记mark详解-Vim入门教程(34)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim入门教程/">Vim入门教程</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2014-04-05
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>Vim的位置标记可以实现在文档中的快速跳转。可以通过命令 <code>mark</code> 或缩写形式 <code>m</code> 手动设置位置标记，Vim也会自动记录某些自身感兴趣的位置点，辅助实现某些快速跳转功能。</p>
+<h3 id="Vim标记简介"><a href="#Vim标记简介" class="headerlink" title="Vim标记简介"></a>Vim标记简介</h3><p>Vim允许在打开的文件中放置自定义的标记。命令 <code>ma</code> 表示用 <code>a</code> 标记当前的光标位置。</p>
+<p>可以在文本中使用 26 个标记 (a~z后A~Z)。这些标记是不可见的，只是一个由 Vim 记住的位置。</p>
+<p>小写标记值在每个缓冲区(即Vim打开文件)局部可见，而大写标记则全局可见。</p>
+<table>
+<thead>
+<tr>
+<th>标注</th>
+<th>设置者</th>
+<th>使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a</code>-<code>z</code></td>
+<td>用户</td>
+<td>仅对当前的一个文件生效，也就意味着只可以在当前文件中跳转</td>
+</tr>
+<tr>
+<td><code>A</code>-<code>Z</code></td>
+<td>用户</td>
+<td>全局标注，可以作用于不同文件。大写标注也称为「文件标注」。跳转时有可能会切换到另一个缓冲区</td>
+</tr>
+<tr>
+<td><code>0</code>-<code>9</code></td>
+<td>viminfo</td>
+<td><code>0</code> 代表 viminfo 最后一次被写入的位置。实际使用中，就代表 Vim 进程最后一次结束的位置。<code>1</code> 代表 Vim 进程倒数第二次结束的位置，以此类推</td>
+</tr>
+</tbody>
+</table>
+<p>要跳到一个你定义的标记，可以使用命令 <code>`{mark}</code>，这里 {mark} 是指定义标记的那个字母。所以，移到标记a的命令是：<code>`a</code>。</p>
+<p>命令 <code>&#39;{mark}</code> (单引号加一个标记) 会移到标记所在行的行首。这与 <code>`mark</code> 命令是不同的， 因为后者是移到标记所在行上被标记的<strong>列位置</strong>，即同时恢复行、列的位置。</p>
+<p>可以在Vim命令行模式下用命令 <code>:marks</code> 获得所有Vim标记的列表。命令行模式下使用命令 <code>:h mark-motions</code> 可以获取关于标注的更多帮助。</p>
+<p>Vim自带一些特殊的标记，包括：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>跳转至</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&#39;[</code> 与 <code>`[</code></td>
+<td>上一次修改或复制的第一行或第一个字符</td>
+</tr>
+<tr>
+<td><code>&#39;]</code> 与 <code>`]</code></td>
+<td>上一次修改或复制的最后一行或最后一个字符</td>
+</tr>
+<tr>
+<td><code>&#39;&lt;</code> 与 <code>`&lt;</code></td>
+<td>上一次在可视模式下选取的第一行或第一个字符</td>
+</tr>
+<tr>
+<td><code>&#39;&gt;</code> 与 <code>`&gt;</code></td>
+<td>上一次在可视模式下选取的最后一行或最后一个字符</td>
+</tr>
+<tr>
+<td><code>&#39;&#39;</code> 与 <code>`&#39;</code></td>
+<td>上一次跳转之前的光标位置</td>
+</tr>
+<tr>
+<td><code>&#39;&quot;</code> 与 <code>`&quot;</code></td>
+<td>上一次关闭当前缓冲区时的光标位置</td>
+</tr>
+<tr>
+<td><code>&#39;^</code> 与 <code>`^</code></td>
+<td>上一次插入字符后的光标位置</td>
+</tr>
+<tr>
+<td><code>&#39;.</code> 与 <code>`.</code></td>
+<td>上一次修改文本后的光标位置</td>
+</tr>
+<tr>
+<td><code>&#39;(</code> 与 <code>`(</code></td>
+<td>当前句子的开头</td>
+</tr>
+<tr>
+<td><code>&#39;)</code> 与 <code>`)</code></td>
+<td>当前句子的结尾</td>
+</tr>
+<tr>
+<td><code>&#39;{</code> 与 <code>`{</code></td>
+<td>当前段落的开头</td>
+</tr>
+<tr>
+<td><code>&#39;}</code> 与 <code>`}</code></td>
+<td>当前段落的结尾</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Vim标记示例"><a href="#Vim标记示例" class="headerlink" title="Vim标记示例"></a>Vim标记示例</h3><p>Vim标记在需要处理一个文件的两个相关地方的时候非常有用。</p>
+<p>假设你在处理文末的时候需要查看文首的一些内容，先移动到行首，设置一个标记 s (start)：<code>ms</code>。</p>
+<p>然后移动到你需要处理的地方，再设置一个标记 e (end)：<code>me</code>。</p>
+<p>现在你可以随意移动，当需要看开头的地方，可以使用这个命令移到那里：<code>`s</code> 或 <code>&#39;s</code>。</p>
+<p>然后使用 <code>&#39;&#39;</code> 跳回来，或者用 <code>`e</code> 跳到你正在处理的文尾的地方。当然，这里使用 <em>s</em> 和 <em>e</em> 作标记名没有特别的含义，只是为了好记而已。</p>
+<p>关于Vim标记的应用，推荐阅读<a href="https://vim.ink/vim-recovery-cusor-position.html">使用位置标记实现Vim打开文件自动恢复上次的光标位置</a>。</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-mark.html&title=《Vim位置标记mark详解-Vim入门教程(34)》 — vim教程网&pic=images/vim44.jfif" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-mark.html&title=《Vim位置标记mark详解-Vim入门教程(34)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-mark.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim位置标记mark详解-Vim入门教程(34)》 — vim教程网&url=https://vim.ink/vim-mark.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-mark.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-mark.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-write-quit.html" title="Vim入门教程-14种退出Vim的方法及区别" target="_blank">Vim入门教程-14种退出Vim的方法及区别</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-cmdwin.html" title="Vim入门教程-命令行窗口(cmdwin)" target="_blank">Vim入门教程-命令行窗口(cmdwin)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-substitute-introduce.html" title="再谈Vim substitute替换命令-Vim入门教程(54)" target="_blank">再谈Vim substitute替换命令-Vim入门教程(54)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-modeline.html" title="Vim模式行及应用-Vim入门教程(53)" target="_blank">Vim模式行及应用-Vim入门教程(53)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-spell-check.html" title="Vim单词拼写检查与更正-Vim入门教程(52)" target="_blank">Vim单词拼写检查与更正-Vim入门教程(52)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vimgrep.html" title="Vim grep命令及其使用-Vim入门教程(51)" target="_blank">Vim grep命令及其使用-Vim入门教程(51)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-chinese-cheatsheet.html" title="Vim中文键盘速查表详细介绍-Vim入门教程(50)" target="_blank">Vim中文键盘速查表详细介绍-Vim入门教程(50)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-goto-file.html" title="Vim文件间跳转-Vim入门教程(49)" target="_blank">Vim文件间跳转-Vim入门教程(49)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-session.html" title="Vim的session保存和会话恢复-Vim入门教程(48)" target="_blank">Vim的session保存和会话恢复-Vim入门教程(48)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-line-downward.html" title="Vim光标移动之实际行与屏幕行-Vim入门教程(47)" target="_blank">Vim光标移动之实际行与屏幕行-Vim入门教程(47)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-operate-muliple-line.html" title="Vim跨行操作与Ex命令操作范围-Vim入门教程(46)" target="_blank">Vim跨行操作与Ex命令操作范围-Vim入门教程(46)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-quickfix.html" title="Vim的quickfix列表介绍-Vim入门教程(45)" target="_blank">Vim的quickfix列表介绍-Vim入门教程(45)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-pattern.html" title="Vim中的模式pattern-Vim入门教程(44)" target="_blank">Vim中的模式pattern-Vim入门教程(44)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-incsearch.html" title="Vim增量查找与incsearch实时查找预览-Vim入门教程(43)" target="_blank">Vim增量查找与incsearch实时查找预览-Vim入门教程(43)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-very-magic.html" title="Vim搜索字符转义与very magic搜索模式-Vim使用技巧(14)" target="_blank">Vim搜索字符转义与very magic搜索模式-Vim使用技巧(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ex-command.html" title="Vim命令行模式与Ex命令-Vim入门教程(42)" target="_blank">Vim命令行模式与Ex命令-Vim入门教程(42)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-filetype.html" title="Vim文件类型检测原理及应用-Vim入门教程(41)" target="_blank">Vim文件类型检测原理及应用-Vim入门教程(41)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-shell.html" title="Vim执行shell命令及使用Vim批量更改文件名-Vim入门教程(40)" target="_blank">Vim执行shell命令及使用Vim批量更改文件名-Vim入门教程(40)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-autocmd.html" title="Vim命令autocmd及新文件自动生成注释-Vim入门教程(39)" target="_blank">Vim命令autocmd及新文件自动生成注释-Vim入门教程(39)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-args-argdo.html" title="Vim参数列表args和argdo命令-Vim入门教程(38)" target="_blank">Vim参数列表args和argdo命令-Vim入门教程(38)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-tabpage.html" title="Vim标签页介绍及用标签页将窗口分组-Vim入门教程(37)" target="_blank">Vim标签页介绍及用标签页将窗口分组-Vim入门教程(37)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-copy-move-command.html" title="Vim复制命令copy和移动命令move-Vim入门教程(36)" target="_blank">Vim复制命令copy和移动命令move-Vim入门教程(36)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/viminfo.html" title="viminfo文件介绍与使用-Vim入门教程(35)" target="_blank">viminfo文件介绍与使用-Vim入门教程(35)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-operator-and-motion.html" title="谈谈Vim中的操作符和动作命令-Vim入门教程(32)" target="_blank">谈谈Vim中的操作符和动作命令-Vim入门教程(32)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-find-char.html" title="Vim字符查找与光标快速移动-Vim入门教程(32)" target="_blank">Vim字符查找与光标快速移动-Vim入门教程(32)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-global-command.html" title="Vim global命令和重复操作-Vim入门教程(31)" target="_blank">Vim global命令和重复操作-Vim入门教程(31)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-map.html" title="Vim快捷键和键盘映射-Vim入门教程(30)" target="_blank">Vim快捷键和键盘映射-Vim入门教程(30)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-leader.html" title="Vim快捷键和前缀键Leader-Vim入门教程(29)" target="_blank">Vim快捷键和前缀键Leader-Vim入门教程(29)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-recording.html" title="Vim宏录制与重复操作-Vim入门教程(28)" target="_blank">Vim宏录制与重复操作-Vim入门教程(28)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-inside-around.html" title="Vim文本周边around、内部inside命令-Vim入门教程(24)" target="_blank">Vim文本周边around、内部inside命令-Vim入门教程(24)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-register.html" title="Vim寄存器-Vim入门教程(23)" target="_blank">Vim寄存器-Vim入门教程(23)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-world.html" title="Vim基于单词移动及Vim单词、字串概念-Vim入门教程(22)" target="_blank">Vim基于单词移动及Vim单词、字串概念-Vim入门教程(22)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-change.html" title="Vim删除并进入插入模式命令c(change)-Vim入门教程(21)" target="_blank">Vim删除并进入插入模式命令c(change)-Vim入门教程(21)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-copy-delete-register.html" title="Vim剪切、复制、粘贴和删除操作与Vim无名寄存器-Vim入门教程(20)" target="_blank">Vim剪切、复制、粘贴和删除操作与Vim无名寄存器-Vim入门教程(20)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-split-window.html" title="Vim屏幕分割(分屏)功能介绍-Vim入门教程(19)" target="_blank">Vim屏幕分割(分屏)功能介绍-Vim入门教程(19)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-substitute-2.html" title="Vim替换命令substitute重用上次的查找模式-Vim入门教程(18)" target="_blank">Vim替换命令substitute重用上次的查找模式-Vim入门教程(18)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-paste.html" title="Vim右键粘贴格式错乱解决方法-Vim入门教程(16)" target="_blank">Vim右键粘贴格式错乱解决方法-Vim入门教程(16)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fold.html" title="Vim代码折叠-Vim入门教程(15)" target="_blank">Vim代码折叠-Vim入门教程(15)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ranges.html" title="Vim操作范围、文件范围介绍-Vim入门教程(14)" target="_blank">Vim操作范围、文件范围介绍-Vim入门教程(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-file-buffer.html" title="Vim文件缓冲区列表介绍-Vim入门教程(12)" target="_blank">Vim文件缓冲区列表介绍-Vim入门教程(12)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-auto-complement.html" title="Vim自带自动补齐功能-Vim入门教程(11)" target="_blank">Vim自带自动补齐功能-Vim入门教程(11)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-substitute.html" title="Vim替换命令substitute小结-Vim入门教程(10)" target="_blank">Vim替换命令substitute小结-Vim入门教程(10)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-search.html" title="Vim搜索命令使用方法和技巧-Vim入门教程(9)" target="_blank">Vim搜索命令使用方法和技巧-Vim入门教程(9)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-visual-mode.html" title="Vim可视化模式-Vim入门教程(6)" target="_blank">Vim可视化模式-Vim入门教程(6)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-repeat-command.html" title="vim重复操作命令. (英文句点)-Vim入门教程(5)" target="_blank">vim重复操作命令. (英文句点)-Vim入门教程(5)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctrl-s.html" title="Vim中ctrl s卡死解决方法和设置ctrl s为保存文件功能-Vim入门教程(4)" target="_blank">Vim中ctrl s卡死解决方法和设置ctrl s为保存文件功能-Vim入门教程(4)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-cursor.html" title="Vim光标移动命令汇总-Vim入门教程(3)" target="_blank">Vim光标移动命令汇总-Vim入门教程(3)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-edit-command.html" title="Vim文本编辑命令汇总-Vim入门教程(2)" target="_blank">Vim文本编辑命令汇总-Vim入门教程(2)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vimrc-config.html" title="Vim入门级基础配置-Vim入门教程(1)" target="_blank">Vim入门级基础配置-Vim入门教程(1)</a>
+                            </li>
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vim标记简介"><span class="post-toc-text">Vim标记简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vim标记示例"><span class="post-toc-text">Vim标记示例</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-mark.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

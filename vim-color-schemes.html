@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>15个著名的Vim配色方案整理-Vim入门教程(7) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim配色方案,vim color scheme, vim molokai,vim配置,Vim教程网">
+   
+  
+  <meta name="description" content="Vi/Vim手工安装配色方案的主要步骤，介绍15个著名的Vim配色方案及下载地址，修改Vim配置文件~/.vimrc，增加配置项colorscheme molokai">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-color-schemes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      15个著名的Vim配色方案整理-Vim入门教程(7)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim插件/">Vim插件</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2013-06-01
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>Vi/Vim手工自行安装配色方案的主要步骤包括：</p>
+<blockquote>
+<p>(1) 确认当前用户目录下存在<code>~/.vim/colors</code>目录，没有则新建，安装的Vim配色方案对应.vim文件需放在该目录下</p>
+<p>(2) 下载或编辑某个配色方案的<strong>.vim</strong>文件，保存到<code>~/.vim/colors</code>目录下</p>
+<p>(3) 修改<a href="https://vim.ink/vimrc-config.html">Vim配置文件<code>~/.vimrc</code></a>，增加配置项<code>colorscheme molokai</code>并保存 (假设下载了一个叫<strong>molokai</strong>的配色方案文件molokai.vim)</p>
+</blockquote>
+<p><strong>注意</strong>：配置项中的 <em>molokai</em> 为配色方案文件的文件名，Vim通过该文件名加载对应.vim文件</p>
+<p>下面介绍15个著名的Vim配色方案及其下载地址，大家可以根据图片效果按需使用。推荐阅读<a href="https://vim.ink/10-light-vim-color-scheme.html">2017年排名前10的暗黑简约型vim配色方案</a>。</p>
+<h4 id="1-acme-colors"><a href="#1-acme-colors" class="headerlink" title="1. acme-colors"></a>1. acme-colors</h4><p>acme-colors配色方案支持256种颜色，对应.vim文件下载地址为：<br><a href="https://github.com/plan9-for-vimspace/acme-colors/blob/master/colors/acme.vim" target="_blank" rel="noopener">https://github.com/plan9-for-vimspace/acme-colors/blob/master/colors/acme.vim</a></p>
+<p><img src="https://vim.ink/images/acme-colors.jpg" alt="vim配色方案acme"></p>
+<h4 id="2-base16"><a href="#2-base16" class="headerlink" title="2. base16"></a>2. base16</h4><p>base16配色方案包含一系列配色，还提供了一些额外的插件供安装，具体使用可参考github上的说明：<br><a href="https://github.com/chriskempson/base16-vim" target="_blank" rel="noopener">https://github.com/chriskempson/base16-vim</a></p>
+<p><img src="https://vim.ink/images/base16.jpg" alt="Vim配色方案base16"></p>
+<h4 id="3-gotham"><a href="#3-gotham" class="headerlink" title="3. gotham"></a>3. gotham</h4><p>Gotham自称是一个非常<em>dark</em>的配色方案，包含 <code>gotham</code>和<code>gotham256</code>以及一些其他插件配置，github地址为：<br><a href="https://github.com/whatyouhide/vim-gotham" target="_blank" rel="noopener">https://github.com/whatyouhide/vim-gotham</a></p>
+<p><img src="https://vim.ink/images/gotham.jpg" alt="Vim配色方案gotham"></p>
+<h4 id="4-gruvbox"><a href="#4-gruvbox" class="headerlink" title="4. gruvbox"></a>4. gruvbox</h4><p>gruvbox配色方案在github上的评价较高，据说对人眼非常pleasant，<a href="https://vim.ink">Vim教程网</a>就是用的这个配色方案，下面是github地址及配色截图<br><a href="https://github.com/morhetz/gruvbox" target="_blank" rel="noopener">https://github.com/morhetz/gruvbox</a></p>
+<p><img src="https://vim.ink/images/gruvbox.jpg" alt="Vim配色方案gruvbox"></p>
+<h4 id="5-janah"><a href="#5-janah" class="headerlink" title="5. janah"></a>5. janah</h4><p>janah也是一个dark型的配色方案，github地址为：<br><a href="https://github.com/mhinz/vim-janah" target="_blank" rel="noopener">https://github.com/mhinz/vim-janah</a></p>
+<p><img src="https://vim.ink/images/janah.jpg" alt="Vim配色方案janah"></p>
+<h4 id="6-jellybeans"><a href="#6-jellybeans" class="headerlink" title="6. jellybeans"></a>6. jellybeans</h4><p>jellybeans在github上也较流行，github地址：<br><a href="https://github.com/nanotech/jellybeans.vim" target="_blank" rel="noopener">https://github.com/nanotech/jellybeans.vim</a></p>
+<p><img src="https://vim.ink/images/jellybeans.jpg" alt="Vim配色方案jellybeans"></p>
+<h4 id="7-lucius"><a href="#7-lucius" class="headerlink" title="7. lucius"></a>7. lucius</h4><p>lucius配色方案的github地址：<a href="https://github.com/jonathanfilip/vim-lucius" target="_blank" rel="noopener">https://github.com/jonathanfilip/vim-lucius</a></p>
+<p><img src="https://vim.ink/images/lucius.jpg" alt="Vim配色方案lucius"></p>
+<h4 id="8-molokai"><a href="#8-molokai" class="headerlink" title="8. molokai"></a>8. molokai</h4><p>molokai配色方案非常出名，知乎上有个问题<a href="https://www.zhihu.com/question/19597873" target="_blank" rel="noopener">你认为最好看的 Vim 配色方案是哪款</a>，molokai的呼声非常高<br><a href="https://github.com/tomasr/molokai" target="_blank" rel="noopener">https://github.com/tomasr/molokai</a></p>
+<p><img src="https://vim.ink/images/molokai.jpg" alt="Vim配色方案molokai"></p>
+<h4 id="9-oceanic-next"><a href="#9-oceanic-next" class="headerlink" title="9. oceanic-next"></a>9. oceanic-next</h4><p>oceanic-next是一个neovim配色方案，依赖其他几个插件和配色方案<br><a href="https://github.com/mhartington/oceanic-next" target="_blank" rel="noopener">https://github.com/mhartington/oceanic-next</a></p>
+<p><img src="https://vim.ink/images/oceanic-next.jpg" alt="Vim配色方案oceanic-next"></p>
+<h4 id="10-paramount"><a href="#10-paramount" class="headerlink" title="10. paramount"></a>10. paramount</h4><p>paramount是一个比较简单的Vim配色方案，只关注一些关键配置<br><a href="https://github.com/owickstrom/vim-colors-paramount" target="_blank" rel="noopener">https://github.com/owickstrom/vim-colors-paramount</a></p>
+<p><img src="https://vim.ink/images/paramount.jpg" alt="Vim配色方案paramount"></p>
+<h4 id="11-flattened"><a href="#11-flattened" class="headerlink" title="11. flattened"></a>11. flattened</h4><p>flattened也是一个很简介但不简单的配色方案，官方说法是没有废话“without the bullshit”<br><a href="https://github.com/romainl/flattened" target="_blank" rel="noopener">https://github.com/romainl/flattened</a></p>
+<p><img src="https://vim.ink/images/flattened.jpg" alt="Vim配色方案flattened"></p>
+<h4 id="12-railscasts"><a href="#12-railscasts" class="headerlink" title="12. railscasts"></a>12. railscasts</h4><p>railscasts同时支持GUI和终端方式，github地址为：<br><a href="https://github.com/jpo/vim-railscasts-theme" target="_blank" rel="noopener">https://github.com/jpo/vim-railscasts-theme</a></p>
+<p><img src="https://vim.ink/images/railscasts.jpg" alt="Vim配色方案railscasts"></p>
+<h4 id="13-seoul256"><a href="#13-seoul256" class="headerlink" title="13. seoul256"></a>13. seoul256</h4><p>seoul256是一个低对比度(low-contrast)的配色方案，github地址：<br><a href="https://github.com/junegunn/seoul256.vim" target="_blank" rel="noopener">https://github.com/junegunn/seoul256.vim</a></p>
+<p><img src="https://vim.ink/images/seoul256.jpg" alt="Vim配色方案seoul256"></p>
+<h4 id="14-solarized"><a href="#14-solarized" class="headerlink" title="14. solarized"></a>14. solarized</h4><p>solarized配色方案在github上的star非常多，<a href="https://github.com/altercation/vim-colors-solarized" target="_blank" rel="noopener">https://github.com/altercation/vim-colors-solarized</a></p>
+<p><img src="https://vim.ink/images/solarized.jpg" alt="Vim配色方案solarized"></p>
+<h4 id="15-yowish"><a href="#15-yowish" class="headerlink" title="15. yowish"></a>15. yowish</h4><p>yowish配色方案同时支持GUI和256色终端，也是一个 <code>dark</code> 主题<br><a href="https://github.com/kabbamine/yowish.vim" target="_blank" rel="noopener">https://github.com/kabbamine/yowish.vim</a></p>
+<p><img src="https://vim.ink/images/yowish.jpg" alt="Vim配色方案yowish"></p>
+<hr>
+<p>更多关于Vim教程介绍，可参考<a href="https://vim.ink">Vim教程网</a>上的其他博客，推荐阅读<a href="https://vim.ink/10-light-vim-color-scheme.html">2017年排名前10的暗黑简约型vim配色方案</a>。</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-color-schemes.html&title=《15个著名的Vim配色方案整理-Vim入门教程(7)》 — vim教程网&pic=images/vim7.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-color-schemes.html&title=《15个著名的Vim配色方案整理-Vim入门教程(7)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-color-schemes.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《15个著名的Vim配色方案整理-Vim入门教程(7)》 — vim教程网&url=https://vim.ink/vim-color-schemes.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-color-schemes.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-color-schemes.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-autopep8-plugin.html" title="Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用" target="_blank">Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/jedi-vim-plugin.html" title="Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法" target="_blank">Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indentLine-plugin.html" title="Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用" target="_blank">Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-youcompleteme-install.html" title="Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)" target="_blank">Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delimitmate-plugin.html" title="Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)" target="_blank">Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/10-light-vim-color-scheme.html" title="2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)" target="_blank">2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctrlp-plugin.html" title="Vim模糊搜索插件ctrlp使用方法-Vim插件(12)" target="_blank">Vim模糊搜索插件ctrlp使用方法-Vim插件(12)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fzf-plugin.html" title="模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)" target="_blank">模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-gutentags.html" title="Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)" target="_blank">Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plug.html" title="Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)" target="_blank">Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-powerline.html" title="使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)" target="_blank">使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-keycastow.html" title="windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)" target="_blank">windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-nerdtree-plugin.html" title="Vim插件NERD tree介绍与使用方法-Vim入门教程(26)" target="_blank">Vim插件NERD tree介绍与使用方法-Vim入门教程(26)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-surround-plugin.html" title="Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)" target="_blank">Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fswitch.html" title="Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)" target="_blank">Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctag.html" title="Vim使用ctags实现函数跳转-Vim入门教程(13)" target="_blank">Vim使用ctags实现函数跳转-Vim入门教程(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plugin-manager.html" title="Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)" target="_blank">Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-acme-colors"><span class="post-toc-text">1. acme-colors</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-base16"><span class="post-toc-text">2. base16</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-gotham"><span class="post-toc-text">3. gotham</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-gruvbox"><span class="post-toc-text">4. gruvbox</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-janah"><span class="post-toc-text">5. janah</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-jellybeans"><span class="post-toc-text">6. jellybeans</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7-lucius"><span class="post-toc-text">7. lucius</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#8-molokai"><span class="post-toc-text">8. molokai</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#9-oceanic-next"><span class="post-toc-text">9. oceanic-next</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#10-paramount"><span class="post-toc-text">10. paramount</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#11-flattened"><span class="post-toc-text">11. flattened</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#12-railscasts"><span class="post-toc-text">12. railscasts</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#13-seoul256"><span class="post-toc-text">13. seoul256</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#14-solarized"><span class="post-toc-text">14. solarized</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#15-yowish"><span class="post-toc-text">15. yowish</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-color-schemes.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

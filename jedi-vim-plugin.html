@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法 | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="jedi-vim,Vim Python插件,Vim教程网,Python Vim, Vim自动补全">
+   
+  
+  <meta name="description" content="Vim教程网介绍Python自动补全插件jedi-vim的安装和使用，Python代码跳转和Vim插件管理器Vundle和vim-plug。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-jedi-vim-plugin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim插件/">Vim插件</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2019-04-02
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="https://github.com/davidhalter/jedi" target="_blank" rel="noopener">jedi</a>是一个用于Python自动补齐和静态分析的开源库。<a href="https://github.com/davidhalter/jedi-vim" target="_blank" rel="noopener">jedi-vim</a>是jedi作者开源的一个基于jedi库实现的Vim插件，提供了Vim下Python代码优秀的自动补全能力，在github上拥有近4k的star。</p>
+<p><a href="https://vim.ink">Vim教程网</a>介绍的<a href="https://vim.ink/vim-youcompleteme-install.html">YouCompleteMe插件</a>实际上也是使用jedi-vim来实现Python代码自动补全。</p>
+<p>依赖于Jedi库，jedi-vim插件几乎支持了Python的所有语法特性，官方文档上列出的jedi-vim功能包括：</p>
+<ul>
+<li>Builtins</li>
+<li>Multiple <code>return</code>s or <code>yield</code>s</li>
+<li>Tuple assignments/array indexing/dictionary indexing</li>
+<li><code>with</code>-statement/exception handling</li>
+<li><code>*args</code> and <code>**kwargs</code></li>
+<li>Decorators, lambdas, closures</li>
+<li>Generators, iterators</li>
+<li>Some descriptors: <code>property</code>/<code>staticmethod</code>/<code>classmethod</code></li>
+<li>Some magic methods: <code>__call__</code>, <code>__iter__</code>, <code>__next__</code>, <code>__get__</code>,<br><code>__getitem__</code>, <code>__init__</code></li>
+<li><code>list.append()</code>, <code>set.add()</code>, <code>list.extend()</code>, etc.</li>
+<li>(Nested) list comprehensions and ternary expressions</li>
+<li>Relative <code>import</code>s</li>
+<li><code>getattr()</code>/<code>__getattr__</code>/<code>__getattribute__</code></li>
+<li>Function annotations (py3k feature, are being ignored at the moment, but are<br>parsed)</li>
+<li>Class decorators (py3k feature, are being ignored at the moment, but are<br>parsed)</li>
+<li>Simple/usual <code>sys.path</code> modifications</li>
+<li><code>isinstance</code> checks for <code>if</code>/<code>while</code>/<code>assert</code> case, that doesn’t work with<br>Jedi</li>
+<li>And more…</li>
+</ul>
+<p>除了Python代码自动补齐，jedi-vim插件还能实时展示对应函数的文档(Pydoc)，可以说是一个功能非常强大的Vim插件。</p>
+<h3 id="一、jedi-vim安装"><a href="#一、jedi-vim安装" class="headerlink" title="一、jedi-vim安装"></a>一、jedi-vim安装</h3><h4 id="1-1-jedi-vim安装依赖"><a href="#1-1-jedi-vim安装依赖" class="headerlink" title="1.1 jedi-vim安装依赖"></a>1.1 jedi-vim安装依赖</h4><p>首先，jedi-vim插件需要当前Vim版本支持python，在终端输入 <code>vim --version</code> 可查看当前 Vim 的版本和编译信息。如下图可知，当前Vim并不支持 python2或python3，因此需要重新编译和安装。源码编译安装Vim的方法可参考<a href="https://vim.ink/install-vim-and-vimcdoc.html">vim源码编译安装方法</a>。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1g09r0f20cjj20rf0man1g.jpg" alt="vim-version"></p>
+<p>其次，jedi-vim插件依赖python开源库<strong>jedi</strong>，可以使用pip安装：<code>pip install jedi</code>，也可以从github下载源码安装。</p>
+<p>此外，jedi-vim作者建议Vim版本不应该低于7.3，因为7.3以上版本的Vim提供了<strong>conceal</strong>功能，这是jedi-vim插件的”函数形参自动补齐(function parameter completion)”功能所必需的。</p>
+<h4 id="1-2-jedi-vim安装方法"><a href="#1-2-jedi-vim安装方法" class="headerlink" title="1.2 jedi-vim安装方法"></a>1.2 jedi-vim安装方法</h4><p>有多种方法安装jedi-vim插件，推荐使用Vim插件管理器<a href="https://vim.ink/vim-plugin-manager.html">vundle</a>或(vim-plug)[<a href="https://vim.ink/vim-plug.html]安装。">https://vim.ink/vim-plug.html]安装。</a></p>
+<p>如果采用从github下载源码的方式进行安装，执行下面的命令下载源代码后将下载的文件夹复制到 <code>~/.vim</code> 即可完成安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone http://github.com/davidhalter/jedi-vim path/to/bundles/jedi-vim</span><br><span class="line">git clone --recursive http://github.com/davidhalter/jedi-vim</span><br></pre></td></tr></table></figure>
+<p>如果使用vundle安装jedi-vim，只需在配置文件 <code>~/.vimrc</code> 中的适当位置增加 <code>Plugin &#39;davidhalter/jedi-vim&#39;</code> 后再在Vim的命令行模式下执行 <code>:PluginInstall</code> 即可完成安装。</p>
+<p>如果使用vim-plug安装jedi-vim，只需在配置文件 <code>~/.vimrc</code> 中的适当位置增加 <code>Plug &#39;davidhalter/jedi-vim&#39;</code> 后再在Vim的命令行模式下执行 <code>PlugInstall</code> 即可。</p>
+<h3 id="二、jedi-vim插件使用方法"><a href="#二、jedi-vim插件使用方法" class="headerlink" title="二、jedi-vim插件使用方法"></a>二、jedi-vim插件使用方法</h3><p>默认设置下，插入模式下按 <code>&lt;Ctrl-Space&gt;</code> 会触发jedi-vim的自动补齐，输入 <code>.</code> 时也会自动触发自动补齐提醒。</p>
+<p>可以使用 <code>let g:jedi#completions_command = &quot;&lt;C-N&gt;&quot;</code> 设置 <code>&lt;Ctrl-n&gt;</code>(同时按下Ctrl和n键) 组合键用于触发jedi-vim的自动补齐功能。</p>
+<p>除此之外，jedi-vim插件常用的功能还包括：</p>
+<ul>
+<li>Goto assignments: <code>&lt;leader&gt;g</code> (typical goto function)</li>
+<li>跳转到定义： <code>&lt;leader&gt;d</code></li>
+<li>显示Python文档(Pydoc)： <code>K</code></li>
+<li>重命名：<code>&lt;leader&gt;r</code></li>
+<li>展示某个变量的使用方法：<code>&lt;leader&gt;n</code> (shows all the usages of a name)</li>
+<li>打开某个模块：<code>:Pyimport os</code> (打开 <strong>os</strong> 模块)</li>
+</ul>
+<p><strong>注</strong>：<code>&lt;leader&gt;</code> 表示<a href="https://vim.ink/vim-leader.html">Vim的leader键</a>，默认为 <code>\</code>。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1g1optc5hn2g20oy0cgk8m.gif" alt="jedi-vim"></p>
+<p>推荐阅读jedi-vim官方文档获取更多相关介绍：<a href="https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt" target="_blank" rel="noopener">https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt</a>。</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/jedi-vim-plugin.html&title=《Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法》 — vim教程网&pic=images/vim84.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/jedi-vim-plugin.html&title=《Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/jedi-vim-plugin.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法》 — vim教程网&url=https://vim.ink/jedi-vim-plugin.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/jedi-vim-plugin.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/jedi-vim-plugin.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-autopep8-plugin.html" title="Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用" target="_blank">Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indentLine-plugin.html" title="Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用" target="_blank">Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-youcompleteme-install.html" title="Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)" target="_blank">Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delimitmate-plugin.html" title="Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)" target="_blank">Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/10-light-vim-color-scheme.html" title="2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)" target="_blank">2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctrlp-plugin.html" title="Vim模糊搜索插件ctrlp使用方法-Vim插件(12)" target="_blank">Vim模糊搜索插件ctrlp使用方法-Vim插件(12)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fzf-plugin.html" title="模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)" target="_blank">模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-gutentags.html" title="Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)" target="_blank">Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plug.html" title="Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)" target="_blank">Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-powerline.html" title="使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)" target="_blank">使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-keycastow.html" title="windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)" target="_blank">windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-nerdtree-plugin.html" title="Vim插件NERD tree介绍与使用方法-Vim入门教程(26)" target="_blank">Vim插件NERD tree介绍与使用方法-Vim入门教程(26)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-surround-plugin.html" title="Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)" target="_blank">Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fswitch.html" title="Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)" target="_blank">Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctag.html" title="Vim使用ctags实现函数跳转-Vim入门教程(13)" target="_blank">Vim使用ctags实现函数跳转-Vim入门教程(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plugin-manager.html" title="Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)" target="_blank">Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-color-schemes.html" title="15个著名的Vim配色方案整理-Vim入门教程(7)" target="_blank">15个著名的Vim配色方案整理-Vim入门教程(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、jedi-vim安装"><span class="post-toc-text">一、jedi-vim安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-jedi-vim安装依赖"><span class="post-toc-text">1.1 jedi-vim安装依赖</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-jedi-vim安装方法"><span class="post-toc-text">1.2 jedi-vim安装方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、jedi-vim插件使用方法"><span class="post-toc-text">二、jedi-vim插件使用方法</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'jedi-vim-plugin.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

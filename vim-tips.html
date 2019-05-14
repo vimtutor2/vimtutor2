@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>30个Vim常用命令和使用技巧整理 (长期更新) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim技巧,vim命令,vim使用方案,vim总结,vim中文教程">
+   
+  
+  <meta name="description" content="Vim中文教程网总结了30个vim常用命令和实用技巧。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      30个Vim常用命令和使用技巧整理 (长期更新)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim技巧/">Vim技巧</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2014-05-28
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="https://vim.ink">vim教程网</a>总结了30个非常实用的Vim使用技巧，以便大家使用Vim时更加得心应手。</p>
+<ul>
+<li><p>删除从光标位置到单词结尾<strong>之间</strong>的字符并进入插入模式：<code>cw</code></p>
+</li>
+<li><p>删除光标所在单词并进入插入模式：<code>ciw</code>，删除光标所在位置的单词及空格：<code>daw</code></p>
+</li>
+<li><p>高亮选中标签内部的内容：<code>vit</code></p>
+</li>
+<li><p>正向移动到下一单词的开头：<code>w</code>，反向移动到当前单词/上一单词的开头：<code>b</code></p>
+</li>
+<li><p>移动到当前行的第n列：<code>n|</code></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://vim.ink/vim-cursorline-column.html">Vim快速跳转任意行、任意列</a>详细介绍了 <code>|</code> 命令。</p>
+</blockquote>
+<ul>
+<li><p>重绘屏幕并把当前行显示在窗口正中：<code>zz</code></p>
+</li>
+<li><p>将光标所在行移到窗口的顶端：<code>zt</code>，将光标所在行移到窗口的底部：<code>zb</code></p>
+</li>
+<li><p>Vim跳转位置前进：<code>&lt;Ctrl-i&gt;</code>，跳转位置后退：<code>&lt;Ctrl-0&gt;</code>，类似浏览器的前进后退功能</p>
+</li>
+<li><p>回到上次跳转的位置：<code>&#39;&#39;</code>，回到上次编辑的位置：<code>&#39;.</code></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://vim.ink/vim-mark.html">Vim位置标记介绍</a></p>
+</blockquote>
+<ul>
+<li><p>重复执行上次的Vim<strong>命令行模式</strong>命令：<code>@:</code></p>
+</li>
+<li><p>查看Vim当前打开文件的文件名、位置信息和状态等：<code>&lt;Ctrl-g&gt;</code> (同时按下Ctrl键和g键)</p>
+</li>
+<li><p>Vim命令行模式下，<code>%</code> 表示当前活动缓冲区对应文件的完整文件路径</p>
+</li>
+</ul>
+<blockquote>
+<p>更多内容，可以查看Vim教程网上的文章<a href="https://vim.ink/vim-edit-and-wrie-file.html">Vim打开文件命令edit和保存文件命令write</a></p>
+</blockquote>
+<ul>
+<li><p>不离开插入模式，粘贴寄存器中的文本：<code>&lt;C-r&gt;{register}</code> ({register}是我们想要插入的寄存器的名字)</p>
+</li>
+<li><p>重选上一次由可视模式所选择的文本范围：<code>gv</code></p>
+</li>
+</ul>
+<p><img src="https://image.vim.ink/images/691e0c29gy1fwcshp10drg20k809rtc0.gif" alt="vim-tips"></p>
+<ul>
+<li><p>在Vim可视化模式下高亮选中区域后按下 <code>:</code> 键，命令行上会预先填充一个范围 <code>:&#39;&lt;,&#39;&gt;</code> 代表高亮选区的范围</p>
+</li>
+<li><p>把任意寄存器的内容插入到命令行：<code>:&lt;Ctrl-r&gt;{register}</code></p>
+</li>
+<li><p>插入模式下同时按下 <code>&lt;Ctrl-r&gt;</code>，再输入=后，输入任意算数式(如333*2)，回车，即可看到运算结果 (这是使用了Vim表达式寄存器 <code>&quot;=</code>)</p>
+</li>
+<li><p>只读寄存器 <code>&quot;%</code> 表示Vim当前活动文件缓冲区的文件名，在Vim插入模式下，按 <code>&lt;Ctrl-r&gt;%</code> 可将当前文件名输入到文件中</p>
+</li>
+</ul>
+<blockquote>
+<p>关于Vim寄存器的更多内容，可以参考Vim教程网上的文章《<a href="https://vim.ink/vim-register.html">vim寄存器介绍</a>》</p>
+</blockquote>
+<ul>
+<li><p>把光标所在当前单词插入Vim命令行：<code>&lt;Ctrl-r&gt;&lt;Ctrl-w&gt;</code></p>
+</li>
+<li><p>光标所在行用 <code>.</code> 表示，文件的最后一行用 <code>$</code> 表示，<code>%</code> 整个文件 (<code>:1,$</code> 的简写形式)</p>
+</li>
+<li><p>删除当前光标到本行行尾的所有内容：<code>d$</code>，删除当前光标到本行行首的所有内容：<code>d0</code></p>
+</li>
+<li><p>删除所有行：<code>dG</code> 或 <code>:%d</code></p>
+</li>
+<li><p>调换Vim当前光标之后的两个字符的顺序：<code>xp</code></p>
+</li>
+<li><p>当前行自动缩进对齐 (又称自动格式化)：<code>==</code>，当前文件所有行自动缩进对齐：<code>gg=G</code></p>
+</li>
+<li><p>正向移动到下一个 {char} 所在之处的字符上：<code>f{char}</code>，正向移动到下一个 {char} 所在之处的<strong>前</strong>一个字符上：<code>t{char}</code></p>
+</li>
+<li><p>Vim普通模式下 <code>;</code> 命令会重复查找上次 <code>f</code> 命令所查找的字符</p>
+</li>
+</ul>
+<blockquote>
+<p>关于 <code>t</code> 命令的介绍，可以查看文章<a href="https://vim.ink/vim-find-char.html">Vim字符查找与光标快速移动</a></p>
+</blockquote>
+<ul>
+<li><p>Vim分屏后增加某个屏幕的高度：<code>&lt;Ctrl-w&gt;+</code> (先同时按下Ctrl键和w键，再按下+键)</p>
+</li>
+<li><p>把<strong>多个标签页</strong>中的所有文件中的单词 <em>food</em> 都替换成 <em>drink</em>，可以使用 <code>tabdo</code> 命令：<code>:tabdo %s/food/drink/g</code></p>
+</li>
+<li><p>临时退出插入模式，执行单条命令又返回插入模式：<code>&lt;Ctrl-o&gt;</code></p>
+</li>
+<li><p>修改当前光标所在字符为a：<code>ra</code></p>
+</li>
+<li><p>将单词转成大写：<code>gUiw</code>，将当前单词转成小写：<code>guiw</code></p>
+</li>
+<li><p>另存为文件：<code>:saveas &lt;filename&gt;</code></p>
+</li>
+<li><p>读取文件并将内容插入到光标后：<code>:r &lt;filename&gt;</code></p>
+</li>
+<li><p>回退到15分钟前的文件内容：<code>:earlier 15m</code></p>
+</li>
+</ul>
+<hr>
+<p>本文内容长期更新，最后整理出来的常用Vim实用技巧可能会超过30条，各位不用见怪哈！</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-tips.html&title=《30个Vim常用命令和使用技巧整理 (长期更新)》 — vim教程网&pic=images/vim49.jfif" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-tips.html&title=《30个Vim常用命令和使用技巧整理 (长期更新)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-tips.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《30个Vim常用命令和使用技巧整理 (长期更新)》 — vim教程网&url=https://vim.ink/vim-tips.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-tips.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-tips.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-source-command.html" title="使用Vim的source命令辅助完成新浪微博图片迁移" target="_blank">使用Vim的source命令辅助完成新浪微博图片迁移</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-insert-mode-tips.html" title="Vim实用技巧-插入模式实用技巧" target="_blank">Vim实用技巧-插入模式实用技巧</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ide-base.html" title="将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)" target="_blank">将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-extract-odd-or-even-line-2.html" title="Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)" target="_blank">Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-extract-odd-or-even-line.html" title="Vim处理文本之奇偶行删除-Vim使用技巧(17)" target="_blank">Vim处理文本之奇偶行删除-Vim使用技巧(17)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-search-offset.html" title="Vim查找偏移-Vim使用技巧(16)" target="_blank">Vim查找偏移-Vim使用技巧(16)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delete_m.html" title="怎么删除Vim文件中显示的^M字符-Vim技巧(15)" target="_blank">怎么删除Vim文件中显示的^M字符-Vim技巧(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-write-file.html" title="怎么合适地使用Vim保存文件？-Vim使用技巧(13)" target="_blank">怎么合适地使用Vim保存文件？-Vim使用技巧(13)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-recovery-cusor-position.html" title="Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)" target="_blank">Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-column-edit.html" title="Vim可视化模式与面向列编辑文本-Vim使用技巧(11)" target="_blank">Vim可视化模式与面向列编辑文本-Vim使用技巧(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-repeat-operation.html" title="Vim中的重复操作与高效率-Vim使用技巧(10)" target="_blank">Vim中的重复操作与高效率-Vim使用技巧(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-process-file.html" title="使用Vim处理文本-Vim使用技巧(9)" target="_blank">使用Vim处理文本-Vim使用技巧(9)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-edit-and-wrie-file.html" title="Vim打开和保存文件-Vim使用技巧(7)" target="_blank">Vim打开和保存文件-Vim使用技巧(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-seven-effective-ways.html" title="7种提高工作效率的Vim操作-Vim使用技巧(6)" target="_blank">7种提高工作效率的Vim操作-Vim使用技巧(6)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/install-vim-and-vimcdoc.html" title="vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)" target="_blank">vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indent.html" title="Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)" target="_blank">Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-cursorline-column.html" title="Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)" target="_blank">Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-comment-uncomment-lines.html" title="Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)" target="_blank">Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-clear-last-search-hightlight.html" title="Vim清除上次的搜索高亮结果-Vim使用技巧(1)" target="_blank">Vim清除上次的搜索高亮结果-Vim使用技巧(1)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-tips.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Vim的source命令辅助完成新浪微博图片迁移 | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim实用技巧,vim source,Vim教程网,Vim中文教程,Vim global,Vim substitute">
+   
+  
+  <meta name="description" content="Vim教程网介绍使用source命令执行文件中的Vim命令列表，global命令完成全局替换，Vim正则表达式查找目标字符串，使用Vim的source命令完成新浪微博图床的图片迁移，解决新浪微博防盗链对hexo博客的限制。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-source-command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      使用Vim的source命令辅助完成新浪微博图片迁移
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim技巧/">Vim技巧</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-02
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>Vim的 source 命令(缩写形式 <code>:so</code>)用于执行外部文件中保存的Vim命令列表(包括命令行模式下的Ex命令和普通模式下的命令)，实现批量或重复完成某种操作。</p>
+<h4 id="一、source命令简介"><a href="#一、source命令简介" class="headerlink" title="一、source命令简介"></a>一、source命令简介</h4><p><code>:source {file}</code> 用于从 {file} 指定的文件中读取每一行<a href="https://vim.ink/vim-ex-command.html">Vim Ex 命令</a>并执行；<code>:source! {file}</code> 用于从 {file} 指定的文件中读取每一行 Vim 普通模式命令并执行。</p>
+<p><strong>注</strong>：<code>:source {file}</code> 会在Vim<strong>命令行模式</strong>下执行 {file} 中的命令列表，而 <code>:source! {file}</code> 则是在Vim<strong>普通模式</strong>下执行 {file} 中的命令列表。</p>
+<h4 id="二、source命令使用举例"><a href="#二、source命令使用举例" class="headerlink" title="二、source命令使用举例"></a>二、source命令使用举例</h4><p>在<a href="https://vim.ink/vimrc-config.html">Vim入门级配置</a>一文中介绍的各种保存在 <code>~/.vimrc</code> 文件中的配置项，其实就是通过 <code>:source ~/.vimrc</code> 来使得各配置项生效的。</p>
+<p>除了将Vim配置保存在文件中以便永久生效外，还可以在文件中保存多个Vim命令，再通过 source 命令在多个目标文件中一次性执行完所有操作。</p>
+<p>例如，由于最近新浪微博开启了防盗链检测，导致<a href="https://vim.ink">Vim教程网</a>所有的教程图片都无法在博客文章中正常显示，不得不迫使我将所有图片迁移到新的图床 (github pages)。</p>
+<p>完成图片迁移需要先从微博图床上下载原始图片再上传图片到新的图床上，最后再将博客源文件中的图片地址替换成新图床的地址。Vim教程网已经写了近90篇博客，如果纯手工完成下载、上传、替换的迁移流程，显然是一种非常低效率的体力劳动。</p>
+<p>本文介绍使用Vim的source命令辅助完成新浪微博图床的图片迁移工作。</p>
+<h5 id="2-1-提取所有博客地址"><a href="#2-1-提取所有博客地址" class="headerlink" title="2.1 提取所有博客地址"></a>2.1 提取所有博客地址</h5><p>Python脚本<strong>download_sinaimg.py</strong>可提取出一篇博文中所有保存在新浪微博上的图片，例如，<code>python download_sinaimg.py https://vim.ink/vim-color-schemes.html</code> 会下载15个Vim配色方案的图片并保存到当前目录的 images 文件夹中。</p>
+<p>为了获取到Vim教程网所有博文的地址，首先使用Vim打开站点地图文件 sitemap.xml 后，再在Vim的命令行模式下执行 <code>:source get_blog_url.vim</code> 即可从 sitemap.xml 文件中提取出所有博客文章的链接。get_blog_url.vim 文件的内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">" get_blog_url.vim "</span></span><br><span class="line">v/loc/d</span><br><span class="line">/\v *\&lt;\/?\w+\&gt;</span><br><span class="line">%s///g</span><br></pre></td></tr></table></figure>
+<p>关于 get_blog_url.vim 脚本中各命令的含义及功能，推荐阅读<a href="https://vim.ink/vim-process-file.html">使用Vim处理文本</a>进行详细分析。</p>
+<p>此外，下载图片的Python脚本内容如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="comment"># author: https://vim.ink</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> argv</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    <span class="keyword">return</span> page.read()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getImg</span><span class="params">(html)</span>:</span></span><br><span class="line">    reg = <span class="string">r'src="([.*\S]*\.sinaimg.[.*\S]*)"'</span></span><br><span class="line">    imgre = re.compile(reg);</span><br><span class="line">    <span class="keyword">return</span> re.findall(imgre, html)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">downloadFile</span><span class="params">(url)</span>:</span></span><br><span class="line">    html = getHtml(url).decode(<span class="string">'UTF-8'</span>)</span><br><span class="line">    imgList = getImg(html)</span><br><span class="line">    <span class="keyword">for</span> imgPath <span class="keyword">in</span> imgList:</span><br><span class="line">        filename = os.path.basename(imgPath)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"download file \"%s\" from \"%s\""</span> % (filename, imgPath)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            f = open(<span class="string">'./images/'</span>+ filename, <span class="string">'wb'</span>)</span><br><span class="line">            f.write((urllib.urlopen(imgPath)).read())</span><br><span class="line">            f.close()</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"download "</span> imgPath + <span class="string">" error"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    downloadFile(argv[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<h5 id="2-2-替换图片地址"><a href="#2-2-替换图片地址" class="headerlink" title="2.2 替换图片地址"></a>2.2 替换图片地址</h5><p>为了将所有博客源文件中的 “wx1.sinaimg.cn/large”、”wx2.sinaimg.cn/large”、”wx4.sinaimg.cn/large” 等地址全部替换成 “image.vim.ink/images”，首先使用 <code>vim source/_post/*.md</code> 打开了hexo博客的所有markdown源文件，再通过执行 <code>:argdo source replace_sinaimg_url.vim</code> 对Vim参数列表中的每一个文件都执行 <strong>replace_sinaimg_url.vim</strong> 中的 Ex 命令。</p>
+<p>“replace_sinaimg_url.vim” 文件中保存的Vim命令列表如下所示，提供的功能是：先使用<a href="https://vim.ink/vim-search.html">Vim查找命令</a> <code>/</code> 查找到需要替换的原始串，再使用 <a href="https://vim.ink/vim-substitute.html"><code>substitute</code> 替换命令</a>进行全局替换。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">" replace_sinaimg_url.vim "</span></span><br><span class="line">/wx[0-9].sinaimg.cn\/large</span><br><span class="line">%s//image.vim.ink\/images/g</span><br><span class="line">write</span><br></pre></td></tr></table></figure>
+<p>上述流程的Vim视频教程截图如下所示：</p>
+<p><img src="https://image.vim.ink/images/vim-argdo-image-replace.gif" alt="vim-argdo-source"></p>
+<p>关于 Vim参数列表和 <code>:argdo</code> 命令的功能介绍，推荐阅读<a href="https://vim.ink/vim-args-argdo.html">Vim参数列表args和argdo命令</a>。</p>
+<hr>
+<p><strong>注</strong>：通过微博图床迁移来举例说明source命令的使用只是为了说明source命令的用途及可行性。在实践中，如果需要实现一系列的复杂操作，一般会通过其他脚本语言(如Python、shell等)完成。</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-source-command.html&title=《使用Vim的source命令辅助完成新浪微博图片迁移》 — vim教程网&pic=images/vim89.jfif" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-source-command.html&title=《使用Vim的source命令辅助完成新浪微博图片迁移》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-source-command.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Vim的source命令辅助完成新浪微博图片迁移》 — vim教程网&url=https://vim.ink/vim-source-command.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-source-command.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-source-command.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-insert-mode-tips.html" title="Vim实用技巧-插入模式实用技巧" target="_blank">Vim实用技巧-插入模式实用技巧</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ide-base.html" title="将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)" target="_blank">将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-extract-odd-or-even-line-2.html" title="Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)" target="_blank">Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-extract-odd-or-even-line.html" title="Vim处理文本之奇偶行删除-Vim使用技巧(17)" target="_blank">Vim处理文本之奇偶行删除-Vim使用技巧(17)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-search-offset.html" title="Vim查找偏移-Vim使用技巧(16)" target="_blank">Vim查找偏移-Vim使用技巧(16)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delete_m.html" title="怎么删除Vim文件中显示的^M字符-Vim技巧(15)" target="_blank">怎么删除Vim文件中显示的^M字符-Vim技巧(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-write-file.html" title="怎么合适地使用Vim保存文件？-Vim使用技巧(13)" target="_blank">怎么合适地使用Vim保存文件？-Vim使用技巧(13)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-recovery-cusor-position.html" title="Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)" target="_blank">Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-column-edit.html" title="Vim可视化模式与面向列编辑文本-Vim使用技巧(11)" target="_blank">Vim可视化模式与面向列编辑文本-Vim使用技巧(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-repeat-operation.html" title="Vim中的重复操作与高效率-Vim使用技巧(10)" target="_blank">Vim中的重复操作与高效率-Vim使用技巧(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-process-file.html" title="使用Vim处理文本-Vim使用技巧(9)" target="_blank">使用Vim处理文本-Vim使用技巧(9)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-tips.html" title="30个Vim常用命令和使用技巧整理 (长期更新)" target="_blank">30个Vim常用命令和使用技巧整理 (长期更新)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-edit-and-wrie-file.html" title="Vim打开和保存文件-Vim使用技巧(7)" target="_blank">Vim打开和保存文件-Vim使用技巧(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-seven-effective-ways.html" title="7种提高工作效率的Vim操作-Vim使用技巧(6)" target="_blank">7种提高工作效率的Vim操作-Vim使用技巧(6)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/install-vim-and-vimcdoc.html" title="vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)" target="_blank">vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indent.html" title="Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)" target="_blank">Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-cursorline-column.html" title="Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)" target="_blank">Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-comment-uncomment-lines.html" title="Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)" target="_blank">Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-clear-last-search-hightlight.html" title="Vim清除上次的搜索高亮结果-Vim使用技巧(1)" target="_blank">Vim清除上次的搜索高亮结果-Vim使用技巧(1)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、source命令简介"><span class="post-toc-text">一、source命令简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、source命令使用举例"><span class="post-toc-text">二、source命令使用举例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-1-提取所有博客地址"><span class="post-toc-text">2.1 提取所有博客地址</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-2-替换图片地址"><span class="post-toc-text">2.2 替换图片地址</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-source-command.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

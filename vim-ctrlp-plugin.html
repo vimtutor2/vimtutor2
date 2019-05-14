@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim模糊搜索插件ctrlp使用方法-Vim插件(12) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim ctrlp,vim模糊搜索,vim fzf,vim插件推荐,vim中文教程">
+   
+  
+  <meta name="description" content="Vim教程网介绍Vim模糊搜索插件ctrlp的安装和使用方法，支持对文件、缓冲区、MRU文件和标签进行模糊搜索和查找，vundle和vim-plug插件管理器">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-ctrlp-plugin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vim模糊搜索插件ctrlp使用方法-Vim插件(12)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim插件/">Vim插件</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2014-12-05
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="https://github.com/ctrlpvim/ctrlp.vim" target="_blank" rel="noopener">ctrlp</a>是一款支持对文件、缓冲区( <code>:CtrlPBuffer</code> )、MRU(Most Recently Used)文件( <code>:CtrlPMRU</code> )和标签进行模糊搜索/查找的Vim插件，也支持通过正则表达式搜索 ( <code>&lt;Ctrl&gt;-r</code> 进行切换)，同类软件还有<a href="https://vim.ink/vim-fzf-plugin.html">模糊搜索插件fzf</a>等。</p>
+<p>ctrlp使用纯vimscript语言实现，依赖少且配置简单，是一款使用量非常大的Vim插件。</p>
+<h4 id="1-ctrlp安装"><a href="#1-ctrlp安装" class="headerlink" title="1. ctrlp安装"></a>1. ctrlp安装</h4><p>可以使用Vim插件管理器<a href="https://vim.ink/vim-plugin-manager.html">Vundle</a>或<a href="https://vim.ink/vim-plug.html">vim-plug</a>安装ctrlp插件。</p>
+<p>若使用Vundle安装ctrlp，需要在Vim配置文件 <code>~/.vimrc</code> 中新增 <code>Plugin &#39;ctrlpvim/ctrlp.vim&#39;</code>；若使用vim-plug安装ctrlp，需要在Vim配置文件中新增 <code>Plug &#39;ctrlpvim/ctrlp.vim&#39;</code>，具体安装方法可以参考Vim教程网上对应插件管理器的使用方法介绍。</p>
+<p>完整完ctrlp插件后，可以在Vim命令行模式下使用命令 <code>:help ctrlp.txt</code> 获取ctrlp的官方说明文档，这是个<strong>非常详细</strong>的文档，建议细读。</p>
+<h4 id="2-ctrlp命令介绍"><a href="#2-ctrlp命令介绍" class="headerlink" title="2. ctrlp命令介绍"></a>2. ctrlp命令介绍</h4><p>在Vim命令行模式下，可通过以下几种方式启动ctrlp：</p>
+<ul>
+<li>Vim命令行模式下使用命令 <code>:CtrlP</code> 或 <code>:CtrlP 路径</code> 可以调用ctrlp并进入<strong>查找文件</strong>模式，可通过设置 <code>let g:ctrlp_cmd = &#39;CtrlP&#39;</code> 来指定打开ctrlp的Vim命令行命令</li>
+<li>Vim命令行模式下使用命令 <code>:CtrlPBuffer</code> 或 <code>:CtrlPMRU</code> 可以调用ctrlp并分别进入<strong>查找缓冲区</strong> 和 <strong>查找 MRU文件</strong>模式</li>
+<li>Vim命令行模式下使用命令 <code>:CtrlPMixed</code> 可同时搜索 <strong>文件</strong>、<strong>缓冲区</strong> 和 <strong>MRU文件</strong></li>
+</ul>
+<p>此外，在Vim 普通模式下，默认按下 <code>&lt;Ctrl&gt;+p</code> 即可打开ctrlp搜索窗口。可通过设置 <code>let g:ctrlp_map = &#39;&lt;c-p&gt;&#39;</code> 来修改Vim普通模式下默认打开ctrlp的Vim按键映射(change the mapping to invoke CtrlP in Normal mode)。</p>
+<p>默认设置下，ctrlp的窗口显示在Vim窗口的底端(bottom)，可以通过 <code>g:ctrlp_match_window</code> 选项设置窗口的位置，例如，<code>let g:ctrlp_match_window = &#39;top,order:ttb,min:1,max:10,results:20&#39;</code> 设置ctrlp窗口显示在顶端(top)，模糊搜索结果按从上到下(ttb, top to bottom)的顺序显示，高度最小为1行，最大为10行，搜索结果最多显示20行。</p>
+<p>一旦打开ctrlp，即可输入要寻找的文件名使用ctrlp进行模糊搜索，可以使用以下命令进行操作：</p>
+<ul>
+<li>按下 <code>Esc</code> 或 <code>&lt;Ctrl-c&gt;</code> 可退出ctrlp，返回到Vim窗口中</li>
+<li>按下 <code>F5</code> 用于刷新当前操作路径下的文件缓存，可以使用命令 <code>let g:ctrlp_cache_dir = $HOME.&#39;/.cache/ctrlp&#39;</code> 设置缓存文件存放路径</li>
+<li>使用 <code>&lt;Ctrl-k&gt;</code> 和 <code>&lt;Ctrl-j&gt;</code> 在模糊搜索结果列表中上下移动 (当然也可以使用键盘上的上下方向键)</li>
+<li>使用 <code>&lt;Ctrl-f&gt;</code> 和 <code>&lt;Ctrl-b&gt;</code> 在查找文件模式、查找缓冲区模式、查找MRU文件几种模式间进行切换 (cycle between modes)</li>
+<li>使用 <code>&lt;Ctrl-d&gt;</code> 在 <strong>路径匹配</strong> 和 <strong>文件名匹配</strong> 之间切换 (switch to filename search instead of full path) ，可以通过设置 <code>let g:ctrlp_by_filename = 1</code> 来设置默认使用 <strong>文件名匹配</strong> 模式进行模糊搜索</li>
+<li>使用 <code>&lt;Ctrl-r&gt;</code> 在 <strong>字符串模式</strong> 和 <strong>正则表达式模式</strong> 之间切换 (switch to regexp mode)</li>
+<li>使用 <code>&lt;Ctrl-t&gt;</code> 在新的Vim标签页中打开文件 (open the selected entry in a new tab) </li>
+<li>使用 <code>&lt;Ctrl-v&gt;</code> 垂直分割窗口打开文件</li>
+<li>使用 <code>&lt;Ctrl-x&gt;</code> 水平分割窗口打开文件</li>
+<li>使用 <code>&lt;Ctrl-p&gt; 或</code><ctrl-n>` 选择前或后一条历史记录</ctrl-n></li>
+<li><code>&lt;Ctrl-y&gt;</code> 用于当搜索的目标文件不存在时创建文件及父目录 (create a new file and its parent directories)</li>
+<li>使用 <code>&lt;Ctrl-z&gt;</code> 标记或取消标记多个文件， 标记多个文件后可以使用 <code>&lt;Ctrl-o&gt;</code> 同时打开多个文件 (mark/unmark multiple files and <c-o> to open them)</c-o></li>
+</ul>
+<p><img src="https://image.vim.ink/images/691e0c29gy1fwg7hb24c5g20m60erk09.gif" alt="vim-ctrlp"></p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-ctrlp-plugin.html&title=《Vim模糊搜索插件ctrlp使用方法-Vim插件(12)》 — vim教程网&pic=images/vim55.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-ctrlp-plugin.html&title=《Vim模糊搜索插件ctrlp使用方法-Vim插件(12)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-ctrlp-plugin.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim模糊搜索插件ctrlp使用方法-Vim插件(12)》 — vim教程网&url=https://vim.ink/vim-ctrlp-plugin.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-ctrlp-plugin.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-ctrlp-plugin.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-autopep8-plugin.html" title="Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用" target="_blank">Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/jedi-vim-plugin.html" title="Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法" target="_blank">Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indentLine-plugin.html" title="Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用" target="_blank">Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-youcompleteme-install.html" title="Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)" target="_blank">Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delimitmate-plugin.html" title="Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)" target="_blank">Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/10-light-vim-color-scheme.html" title="2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)" target="_blank">2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fzf-plugin.html" title="模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)" target="_blank">模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-gutentags.html" title="Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)" target="_blank">Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plug.html" title="Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)" target="_blank">Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-powerline.html" title="使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)" target="_blank">使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-keycastow.html" title="windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)" target="_blank">windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-nerdtree-plugin.html" title="Vim插件NERD tree介绍与使用方法-Vim入门教程(26)" target="_blank">Vim插件NERD tree介绍与使用方法-Vim入门教程(26)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-surround-plugin.html" title="Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)" target="_blank">Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fswitch.html" title="Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)" target="_blank">Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctag.html" title="Vim使用ctags实现函数跳转-Vim入门教程(13)" target="_blank">Vim使用ctags实现函数跳转-Vim入门教程(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plugin-manager.html" title="Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)" target="_blank">Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-color-schemes.html" title="15个著名的Vim配色方案整理-Vim入门教程(7)" target="_blank">15个著名的Vim配色方案整理-Vim入门教程(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-ctrlp安装"><span class="post-toc-text">1. ctrlp安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-ctrlp命令介绍"><span class="post-toc-text">2. ctrlp命令介绍</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-ctrlp-plugin.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="vim-gutentags,vim-tag生成工具,vim增量更新tags,vim自动tag,vim函数跳转,vim中文教程">
+   
+  
+  <meta name="description" content="vim-gutentags安装方法和配置，gutentags自动异步生成tags文件，增量更新tags标签文件，基于ctags实现vim函数跳转，gutentags原理分析。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-gutentags" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim插件/">Vim插件</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2014-02-25
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>在常规的使用ctags生成tag标签文件实现跳转的方式下，每次需要更新tags文件时都需要手工运行 <code>ctags -R</code> 生成当前项目所有源文件对应的tag标签文件。</p>
+<p>当工程文件多、文件更新频繁时，上述生成tags文件的方法显得笨拙、低效。</p>
+<p>得益于 Vim 8 提供的异步机制，vim插件vim-gutentags能够自动异步生成 tags 文件，当检测到同一个工程下面的文件有修改时，gutentags能自动<strong>增量更新</strong>对应工程的 tags 文件，而不用全部重新生成tags文件，是一个非常高效的tags生成工具。</p>
+<h4 id="1-1-软件依赖"><a href="#1-1-软件依赖" class="headerlink" title="1.1 软件依赖"></a>1.1 软件依赖</h4><p>vim-gutentags的本质仍然是使用ctags生成tag标签来实现函数跳转等功能，只是在ctags的基础上进行了封装和简化(具体封装方式在后文有简单分析)，方便用户在vim中使用。</p>
+<p>由于vim-gutentags依赖ctags工具，因此在使用vim-gutentags插件的系统中必须安装ctags软件，否则会报错”Excutable ‘ctags’ can’t be found.”。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1funhko80b4j20xe038q3b.jpg" alt="vim-gutentags"></p>
+<p>关于ctags的介绍和安装方法，可以参考vim教程网上的文章<a href="https://vim.ink/vim-ctag.html">Vim使用ctags实现函数跳转</a>。</p>
+<p>其次，vim-gutentags需要在<strong>vim8.0</strong>以上版本才能正常工作，因为vim-gutentags实现的是<em>增量更新</em>tags的方式，依赖于vim8提供的异步机制。</p>
+<p>在低于vim8.0的版本是运行vim-gutentags插件，会报错”this plugin requires the job API from Vim8 or Neovim”。</p>
+<p>关于vim8的编译和安装，可以参考vim教程网上的文章<a href="https://vim.ink/install-vim-and-vimcdoc.html">vim安装教程</a>。</p>
+<h4 id="1-2-gutentags安装方法"><a href="#1-2-gutentags安装方法" class="headerlink" title="1.2 gutentags安装方法"></a>1.2 gutentags安装方法</h4><p>本文介绍使用插件管理器<a href="https://vim.ink/vim-plug.html">vim-plug</a>安装vim-gutentags插件。</p>
+<p>在配置文件 <code>~/.vimrc</code> 中增加配置项 <code>Plug &#39;ludovicchabant/vim-gutentags&#39;</code> 后再在vim命令行模式下执行命令 <code>:PlugInstall</code> 即可完成vim-gutentags插件的安装。</p>
+<h3 id="二、vim-gutentags配置介绍和原理分析"><a href="#二、vim-gutentags配置介绍和原理分析" class="headerlink" title="二、vim-gutentags配置介绍和原理分析"></a>二、vim-gutentags配置介绍和原理分析</h3><p>vim-gutentags插件的基本工作原理可以这么理解：首先确定vim当前打开的文件<strong>是否需要自动生成</strong>tags标签，若需要则通过某种方式确定<strong>tag文件的路径</strong>，再基于tag标签文件完成函数跳转、结构体定义跳转等功能。</p>
+<p>因此，vim-gutentags需要确定是否需要生成tags标签文件，又需要告诉ctags软件自身生成的tags文件的具体路径信息 (因为从<a href="https://vim.ink/vim-ctag.html">Vim使用ctags实现函数跳转</a>一文已知，默认情况下，生成的tags文件必须在vim运行的当前目录才能在vim里面正确跳转)。</p>
+<h4 id="2-1-gutentags配置"><a href="#2-1-gutentags配置" class="headerlink" title="2.1 gutentags配置"></a>2.1 gutentags配置</h4><p>为了提供上述信息给vim-gutentags，安装完gutentags后，需要在vim配置文件中增加以下必要的配置项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "</span></span><br><span class="line"><span class="built_in">let</span> g:gutentags_project_root = [<span class="string">'.root'</span>, <span class="string">'.svn'</span>, <span class="string">'.git'</span>, <span class="string">'.project'</span>]</span><br><span class="line"></span><br><span class="line"><span class="string">" 所生成的数据文件的名称 "</span></span><br><span class="line"><span class="built_in">let</span> g:gutentags_ctags_tagfile = <span class="string">'.tags'</span></span><br><span class="line"></span><br><span class="line"><span class="string">" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "</span></span><br><span class="line"><span class="built_in">let</span> s:vim_tags = expand(<span class="string">'~/.cache/tags'</span>)</span><br><span class="line"><span class="built_in">let</span> g:gutentags_cache_dir = s:vim_tags</span><br><span class="line"><span class="string">" 检测 ~/.cache/tags 不存在就新建 "</span></span><br><span class="line"><span class="keyword">if</span> !isdirectory(s:vim_tags)</span><br><span class="line">   silent! call mkdir(s:vim_tags, <span class="string">'p'</span>)</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line"><span class="string">" 配置 ctags 的参数 "</span></span><br><span class="line"><span class="built_in">let</span> g:gutentags_ctags_extra_args = [<span class="string">'--fields=+niazS'</span>, <span class="string">'--extra=+q'</span>]</span><br><span class="line"><span class="built_in">let</span> g:gutentags_ctags_extra_args += [<span class="string">'--c++-kinds=+pxI'</span>]</span><br><span class="line"><span class="built_in">let</span> g:gutentags_ctags_extra_args += [<span class="string">'--c-kinds=+px'</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>变量 <code>gutentags_project_root</code> 是vim-gutentags提供的用于搜索工程目录的标志，gutentags插件启动后，会从文件当前路径递归往上查找 <code>gutentags_project_root</code> 中指定的文件或目录名，直到第一次找到对应目标文件或目录名停止。若没有找到 <code>gutentags_project_root</code> 变量指定的文件或目录名，则gutentags<strong>不会生成</strong>tag文件。</p>
+</li>
+<li><p>变量 <code>gutentags_ctags_tagfile</code> 和 <code>gutentags_cache_dir</code> 分别用于告诉ctags要使用的<strong>tag文件目录</strong>和<strong>tag文件名后缀</strong>，tag文件名的生成规则默认是根据生成tag文件的工程绝对路径按 <strong>-</strong> 分割而成。</p>
+</li>
+<li><p>变量 <code>gutentags_ctags_extra_args</code> 用于配置ctags生成tag标签的参数，具体参数含义可参考文章<a href="https://vim.ink/vim-ctag.html#二、ctags参数介绍">ctags参数介绍</a></p>
+</li>
+</ul>
+<p>所以，上面的gutentags配置指定了从当前路径向上递归查找是否有 <code>.root</code>、<code>.svn</code>、 <code>.git</code>、<code>.project</code> 等标志性文件来确定当前文档所属的工程目录；而ctags要使用的tag标签文件的路径为 <code>~/.cache/tags</code>，文件后缀为 <code>.tags</code>。</p>
+<p><strong>ctags</strong> 软件需要使用命令 <code>:set tags+=tags文件路径</code> 显式地指定tag文件路径，从文件 <code>~/plugged/vim-gutentags/autoload/gutentags/ctags.vim</code> 可以看出，gutentags执行了命令 <code>setlocal tags+=</code> 来添加变量 <code>gutentags_ctags_tagfile</code> 指定的tag文件到局部 tags 搜索列表中。<br><img src="https://image.vim.ink/images/691e0c29gy1funkw1uv3ej217r0osgui.jpg" alt="vim-gutentags"></p>
+<h4 id="2-2-gutentags示例"><a href="#2-2-gutentags示例" class="headerlink" title="2.2 gutentags示例"></a>2.2 gutentags示例</h4><p>安装了gutentags并且进行了上面的设置后，平时打开vim编辑文件基本感觉不到 tags 文件的生成过程了，只要文件修改过，gutentags 都在后台默默分析是否需要更新数据文件，还会帮你：setlocal tags+=… 添加到局部 tags 搜索列表中。得益于 Vim 8 的异步机制，你可以任意随时使用 ctags 相关功能，并且数据库都是最新的。</p>
+<p>就像下面的vim视频教程一样，假设已经在vim配置文件中添加了上面的配置项，在当前目录新建文件 <code>.project</code> 后再打开当前目录下的任意文件，再退出vim后可以看到，gutentags已经为当前目录生成了tags文件 <code>~/.cache/tags/home-vim-vim.ink-libevent-.tags</code>。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1funlje9fwxg20n40f8tn0.gif" alt="vim-gutentags"></p>
+<p>需要注意的是，gutentags 需要靠上面定义的 <code>gutentags_project_root</code> 判断文件所在的工程，如果一个文件没有保存在包含 <code>.git</code>、<code>.svn</code>、<code>.root</code>等 定义在 <code>gutentags_project_root</code> 中的文件，gutentags就不会为该<em>野</em>文件生成 tags。</p>
+<p>想要避免的话，你可以在你的野文件目录中放一个名字为 <code>.root</code> 的空白文件，主动告诉 gutentags 这里就是工程目录。</p>
+<h4 id="2-3-基于gutentags实现跳转"><a href="#2-3-基于gutentags实现跳转" class="headerlink" title="2.3 基于gutentags实现跳转"></a>2.3 基于gutentags实现跳转</h4><p>在为当前目录生成tags文件后，可以通过按键 <code>Ctrl + ]</code> 跳转到对应的定义位置，再使用命令 <code>Ctrl + o</code> 回退到原来的位置。关于跳转的具体应用，可以参考<a href="https://vim.ink/vim-ctag.html">Vim使用ctags实现函数跳转</a></p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1funljbz91bg20q20f97fp.gif" alt="vim函数跳转"></p>
+<p>另外，建议多使用 <code>Ctrl + W + ]</code> 用新窗口打开并查看光标下符号的定义，或者 <code>Ctrl -W }</code> 使用 preview 窗口预览光标下符号的定义。</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-gutentags.html&title=《Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)》 — vim教程网&pic=images/vim39.jfif" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-gutentags.html&title=《Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-gutentags.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)》 — vim教程网&url=https://vim.ink/vim-gutentags.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-gutentags.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-gutentags.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-autopep8-plugin.html" title="Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用" target="_blank">Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/jedi-vim-plugin.html" title="Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法" target="_blank">Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indentLine-plugin.html" title="Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用" target="_blank">Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-youcompleteme-install.html" title="Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)" target="_blank">Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delimitmate-plugin.html" title="Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)" target="_blank">Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/10-light-vim-color-scheme.html" title="2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)" target="_blank">2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctrlp-plugin.html" title="Vim模糊搜索插件ctrlp使用方法-Vim插件(12)" target="_blank">Vim模糊搜索插件ctrlp使用方法-Vim插件(12)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fzf-plugin.html" title="模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)" target="_blank">模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plug.html" title="Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)" target="_blank">Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-powerline.html" title="使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)" target="_blank">使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-keycastow.html" title="windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)" target="_blank">windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-nerdtree-plugin.html" title="Vim插件NERD tree介绍与使用方法-Vim入门教程(26)" target="_blank">Vim插件NERD tree介绍与使用方法-Vim入门教程(26)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-surround-plugin.html" title="Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)" target="_blank">Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fswitch.html" title="Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)" target="_blank">Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctag.html" title="Vim使用ctags实现函数跳转-Vim入门教程(13)" target="_blank">Vim使用ctags实现函数跳转-Vim入门教程(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plugin-manager.html" title="Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)" target="_blank">Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-color-schemes.html" title="15个著名的Vim配色方案整理-Vim入门教程(7)" target="_blank">15个著名的Vim配色方案整理-Vim入门教程(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-软件依赖"><span class="post-toc-text">1.1 软件依赖</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-gutentags安装方法"><span class="post-toc-text">1.2 gutentags安装方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、vim-gutentags配置介绍和原理分析"><span class="post-toc-text">二、vim-gutentags配置介绍和原理分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-gutentags配置"><span class="post-toc-text">2.1 gutentags配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-2-gutentags示例"><span class="post-toc-text">2.2 gutentags示例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-3-基于gutentags实现跳转"><span class="post-toc-text">2.3 基于gutentags实现跳转</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-gutentags.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

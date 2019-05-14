@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim可视化模式与面向列编辑文本-Vim使用技巧(11) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim可视化模式,vim markdown,Vim列编辑,vim中文教程,vim表格">
+   
+  
+  <meta name="description" content="Vim面向列块的可视模式模式允许直接对文件中的列块进行操作，可以对选中的区域执行相同的操作，达到同时往任意行或任意列插入或修改文本的目的，使用Vim编辑markdown表格技巧">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-column-edit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vim可视化模式与面向列编辑文本-Vim使用技巧(11)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim技巧/">Vim技巧</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2015-02-23
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>任何编辑器都可以操作以行为单位的文本，但可以以列为单位进行文本操作的编辑器并不多。</p>
+<p>Vim面向列块的<a href="https://vim.ink/vim-visual-mode.html">可视模式模式</a>允许直接对文件中的列块进行操作，可以在Vim可视化模式下<strong>选中的区域执行相同的操作</strong>，从而达到同时往任意行或任意列插入或修改文本的目的。</p>
+<h4 id="1-Vim可视化模式简介"><a href="#1-Vim可视化模式简介" class="headerlink" title="1. Vim可视化模式简介"></a>1. Vim可视化模式简介</h4><p>如<a href="https://vim.ink/vim-visual-mode.html">Vim可视化模式-Vim入门教程</a>所介绍，Vi/Vim可视化模式(Visual Mode)下可以选择一块编辑区域，然后对选中的文件内容执行插入、删除、替换、改变大小写等操作。</p>
+<p>具体来说，在Vim普通模式下按 <code>v</code> 进入字符选择模式，按 <code>V</code> 进入行选择模式，按 <code>&lt;Ctrl&gt; + v</code> 块选择模式。</p>
+<h4 id="2-使用Vim生成markdown表格"><a href="#2-使用Vim生成markdown表格" class="headerlink" title="2. 使用Vim生成markdown表格"></a>2. 使用Vim生成markdown表格</h4><p>例如，<a href="https://vim.ink">Vim教程网</a>在写博客内容时，需要把下面的纯文本表格修改为markdown语法格式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Chapter Page</span><br><span class="line">Normal mode 15</span><br><span class="line">Insert mode 31</span><br><span class="line">Visual mode 44</span><br></pre></td></tr></table></figure>
+<p>为了实现上述目的：</p>
+<p>(1) 首先, 需要新增一行 “<strong>-</strong>“ 用于分割表头和表内容</p>
+<ul>
+<li>将光标移动到表的第一行执行 <code>yyp</code> 快速复制顶行并粘贴一份副本，使用按 <code>V</code> 进入行选择可视模式后执行 <code>r-</code> 将整行内容替换为 <strong>-</strong></li>
+</ul>
+<p>(2) 其次，需要在每一行增加多列 “<strong>|</strong>“，用于分割表格各列内容</p>
+<ul>
+<li>先使用 <code>normal</code> 命令在目标行的行首新增 <strong>|</strong>，<code>:1,5 normal I|</code> 命令可以实现这一目的，关于这条 normal 命令的具体介绍，可以参考<a href="https://vim.ink/vim-normal-command.html">Vim normal命令和重复操作</a></li>
+<li>再按 <code>&lt;Ctrl&gt;-v</code> 进入Vim列块可视模式，然后按 <code>j</code> 往下移动光标到最后一个目标行，最后使用Vim替换命令 <code>r|</code> 在选中的各列空格字符替换为 “<strong>|</strong>“</li>
+<li>按 <code>gv</code> 重选上一次由可视化模式 <code>&lt;Ctrl&gt;-v</code> 选择的文本范围，再按 <code>$</code> 跳转到行尾后按 <code>A</code> 进入行尾插入模式，输出 <strong>|</strong> 后即可</li>
+</ul>
+<p><img src="https://image.vim.ink/images/691e0c29gy1fwm1gwudk9g20ga07stc5.gif" alt=""></p>
+<p>完成上述两个步骤后，原始的纯文本表格已经被修改为以下内容。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1fwm1gu1ggej206v03k0sv.jpg" alt=""></p>
+<p>如果不使用Vim而改用其他编辑器，不知道要花多少步骤才能完成上述操作？欢迎留言进行分享。</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-column-edit.html&title=《Vim可视化模式与面向列编辑文本-Vim使用技巧(11)》 — vim教程网&pic=images/vim58.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-column-edit.html&title=《Vim可视化模式与面向列编辑文本-Vim使用技巧(11)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-column-edit.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim可视化模式与面向列编辑文本-Vim使用技巧(11)》 — vim教程网&url=https://vim.ink/vim-column-edit.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-column-edit.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-column-edit.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-source-command.html" title="使用Vim的source命令辅助完成新浪微博图片迁移" target="_blank">使用Vim的source命令辅助完成新浪微博图片迁移</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-insert-mode-tips.html" title="Vim实用技巧-插入模式实用技巧" target="_blank">Vim实用技巧-插入模式实用技巧</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ide-base.html" title="将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)" target="_blank">将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-extract-odd-or-even-line-2.html" title="Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)" target="_blank">Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-extract-odd-or-even-line.html" title="Vim处理文本之奇偶行删除-Vim使用技巧(17)" target="_blank">Vim处理文本之奇偶行删除-Vim使用技巧(17)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-search-offset.html" title="Vim查找偏移-Vim使用技巧(16)" target="_blank">Vim查找偏移-Vim使用技巧(16)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delete_m.html" title="怎么删除Vim文件中显示的^M字符-Vim技巧(15)" target="_blank">怎么删除Vim文件中显示的^M字符-Vim技巧(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-write-file.html" title="怎么合适地使用Vim保存文件？-Vim使用技巧(13)" target="_blank">怎么合适地使用Vim保存文件？-Vim使用技巧(13)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-recovery-cusor-position.html" title="Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)" target="_blank">Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-repeat-operation.html" title="Vim中的重复操作与高效率-Vim使用技巧(10)" target="_blank">Vim中的重复操作与高效率-Vim使用技巧(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-process-file.html" title="使用Vim处理文本-Vim使用技巧(9)" target="_blank">使用Vim处理文本-Vim使用技巧(9)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-tips.html" title="30个Vim常用命令和使用技巧整理 (长期更新)" target="_blank">30个Vim常用命令和使用技巧整理 (长期更新)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-edit-and-wrie-file.html" title="Vim打开和保存文件-Vim使用技巧(7)" target="_blank">Vim打开和保存文件-Vim使用技巧(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-seven-effective-ways.html" title="7种提高工作效率的Vim操作-Vim使用技巧(6)" target="_blank">7种提高工作效率的Vim操作-Vim使用技巧(6)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/install-vim-and-vimcdoc.html" title="vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)" target="_blank">vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indent.html" title="Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)" target="_blank">Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-cursorline-column.html" title="Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)" target="_blank">Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-comment-uncomment-lines.html" title="Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)" target="_blank">Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-clear-last-search-hightlight.html" title="Vim清除上次的搜索高亮结果-Vim使用技巧(1)" target="_blank">Vim清除上次的搜索高亮结果-Vim使用技巧(1)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-Vim可视化模式简介"><span class="post-toc-text">1. Vim可视化模式简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-使用Vim生成markdown表格"><span class="post-toc-text">2. 使用Vim生成markdown表格</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-column-edit.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

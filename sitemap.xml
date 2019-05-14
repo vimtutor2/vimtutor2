@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://vim.ink/vim-source-command.html</loc>
+    
+    <lastmod>2019-05-04T10:12:12.709Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-autopep8-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:52:40.238Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-visual-mode.html</loc>
+    
+    <lastmod>2019-04-27T15:38:08.737Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vimrc-config.html</loc>
+    
+    <lastmod>2019-04-27T15:37:39.390Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-edit-command.html</loc>
+    
+    <lastmod>2019-04-27T15:37:25.659Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-cursor.html</loc>
+    
+    <lastmod>2019-04-27T15:37:04.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-youcompleteme-install.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.719Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-tabpage.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.715Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-substitute.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.711Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-seven-effective-ways.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.706Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-search.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.703Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-repeat-operation.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.699Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-repeat-command.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.695Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-register.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.691Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-recovery-cusor-position.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-process-file.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.683Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-powerline.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.680Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-pattern.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.676Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-normal-command.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.673Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-modeline.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.669Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-insert-mode-tips.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.666Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-indent.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.664Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-ide-base.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.658Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-file-buffer.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.655Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-delete_m.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.651Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-ctrlp-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.646Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-ctag.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.639Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-comment-uncomment-lines.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.635Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-column-edit.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.628Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-clear-last-search-hightlight.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.621Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-chinese-cheatsheet.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.612Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-change.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.596Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-args-argdo.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.584Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/jedi-vim-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/10-light-vim-color-scheme.html</loc>
+    
+    <lastmod>2019-04-27T15:36:41.540Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-write-quit.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.185Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-write-file.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.181Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-world.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.178Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-substitute-introduce.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.168Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-split-window.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.160Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-spell-check.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.157Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-shell.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.153Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-search-offset.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.144Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-recording.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.133Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-nerdtree-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.115Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-line-downward.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.112Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-leader.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.104Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-inside-around.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.099Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-indentLine-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.091Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-incsearch.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.087Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-gutentags.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.081Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vimgrep.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.077Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-global-command.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.071Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-fzf-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.066Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-fswitch.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.063Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-fold.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.061Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-find-char.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.057Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-filetype.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.054Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-extract-odd-or-even-line-2.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.046Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-extract-odd-or-even-line.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.042Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-ex-command.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.039Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-edit-and-wrie-file.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.035Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-delimitmate-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.029Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-cursorline-column.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.023Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-copy-move-command.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.018Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-cmdwin.html</loc>
+    
+    <lastmod>2019-04-27T15:35:46.001Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-autocmd.html</loc>
+    
+    <lastmod>2019-04-27T15:35:45.962Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/install-vim-and-vimcdoc.html</loc>
+    
+    <lastmod>2019-04-27T15:35:45.936Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-very-magic.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.607Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-tips.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.604Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-surround-plugin.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.600Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-session.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.588Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-quickfix.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.584Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-plug.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.576Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-operate-muliple-line.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-keycastow.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.560Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-goto-file.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-auto-complement.html</loc>
+    
+    <lastmod>2019-04-27T15:34:36.457Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-color-schemes.html</loc>
+    
+    <lastmod>2019-04-23T15:42:22.636Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-operator-and-motion.html</loc>
+    
+    <lastmod>2019-03-04T16:35:54.005Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-mark.html</loc>
+    
+    <lastmod>2019-01-05T06:27:56.168Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-ctrl-s.html</loc>
+    
+    <lastmod>2018-09-22T23:36:53.628Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/viminfo.html</loc>
+    
+    <lastmod>2018-09-22T23:33:23.551Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-plugin-manager.html</loc>
+    
+    <lastmod>2018-08-22T15:53:49.541Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-paste.html</loc>
+    
+    <lastmod>2018-08-06T16:07:56.683Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-copy-delete-register.html</loc>
+    
+    <lastmod>2018-08-06T15:50:52.928Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-map.html</loc>
+    
+    <lastmod>2018-07-15T10:28:57.543Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-substitute-2.html</loc>
+    
+    <lastmod>2018-01-27T15:47:36.501Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://vim.ink/vim-ranges.html</loc>
+    
+    <lastmod>2018-01-21T08:29:20.299Z</lastmod>
+    
+  </url>
+  
+</urlset>

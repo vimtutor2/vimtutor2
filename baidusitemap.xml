@@ -1,0 +1,2549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://vim.ink/vim-source-command.html</loc>
+    <lastmod>2019-05-04T10:12:12.709Z</lastmod>
+    <data>
+        <display>
+        <title>使用Vim的source命令辅助完成新浪微博图片迁移</title>
+        <pubTime>2019-05-01T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim实用技巧</tag>
+         
+        <tag>vim-global</tag>
+         
+        <tag>vim-source-command</tag>
+         
+        <tag>Vim-substitute</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-autopep8-plugin.html</loc>
+    <lastmod>2019-04-27T15:52:40.238Z</lastmod>
+    <data>
+        <display>
+        <title>Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用</title>
+        <pubTime>2019-04-25T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Python-Vim插件</tag>
+         
+        <tag>vim代码格式化</tag>
+         
+        <tag>vim-autopep8</tag>
+         
+        <tag>Vim-Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-visual-mode.html</loc>
+    <lastmod>2019-04-27T15:38:08.737Z</lastmod>
+    <data>
+        <display>
+        <title>Vim可视化模式-Vim入门教程(6)</title>
+        <pubTime>2013-05-27T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim命令</tag>
+         
+        <tag>vim视频教程</tag>
+         
+        <tag>Vim可视化</tag>
+         
+        <tag>vim模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vimrc-config.html</loc>
+    <lastmod>2019-04-27T15:37:39.390Z</lastmod>
+    <data>
+        <display>
+        <title>Vim入门级基础配置-Vim入门教程(1)</title>
+        <pubTime>2013-03-22T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim配置</tag>
+         
+        <tag>vimrc</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-edit-command.html</loc>
+    <lastmod>2019-04-27T15:37:25.659Z</lastmod>
+    <data>
+        <display>
+        <title>Vim文本编辑命令汇总-Vim入门教程(2)</title>
+        <pubTime>2013-03-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim编辑</tag>
+         
+        <tag>vim命令</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-cursor.html</loc>
+    <lastmod>2019-04-27T15:37:04.430Z</lastmod>
+    <data>
+        <display>
+        <title>Vim光标移动命令汇总-Vim入门教程(3)</title>
+        <pubTime>2013-04-14T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim命令</tag>
+         
+        <tag>vim光标移动</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-youcompleteme-install.html</loc>
+    <lastmod>2019-04-27T15:36:41.719Z</lastmod>
+    <data>
+        <display>
+        <title>Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)</title>
+        <pubTime>2019-02-13T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-YouCompleteMe</tag>
+         
+        <tag>vim-ycm-install</tag>
+         
+        <tag>youcompleteme安装</tag>
+         
+        <tag>vim-youcompleteme插件</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-tabpage.html</loc>
+    <lastmod>2019-04-27T15:36:41.715Z</lastmod>
+    <data>
+        <display>
+        <title>Vim标签页介绍及用标签页将窗口分组-Vim入门教程(37)</title>
+        <pubTime>2014-07-10T16:00:00.000Z</pubTime>
+        
+        <tag>vim中文教程</tag>
+         
+        <tag>Vim标签页</tag>
+         
+        <tag>vim-tabpage</tag>
+         
+        <tag>Vim分屏</tag>
+         
+        <tag>vim-tabedit</tag>
+         
+        <tag>vim-tabdo</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-substitute.html</loc>
+    <lastmod>2019-04-27T15:36:41.711Z</lastmod>
+    <data>
+        <display>
+        <title>Vim替换命令substitute小结-Vim入门教程(10)</title>
+        <pubTime>2013-06-30T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim替换</tag>
+         
+        <tag>vim全局替换</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-seven-effective-ways.html</loc>
+    <lastmod>2019-04-27T15:36:41.706Z</lastmod>
+    <data>
+        <display>
+        <title>7种提高工作效率的Vim操作-Vim使用技巧(6)</title>
+        <pubTime>2014-04-01T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim操作范围</tag>
+         
+        <tag>vim重复操作</tag>
+         
+        <tag>Vim技巧</tag>
+         
+        <tag>vim高效方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-search.html</loc>
+    <lastmod>2019-04-27T15:36:41.703Z</lastmod>
+    <data>
+        <display>
+        <title>Vim搜索命令使用方法和技巧-Vim入门教程(9)</title>
+        <pubTime>2013-06-26T16:00:00.000Z</pubTime>
+        
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim搜索</tag>
+         
+        <tag>vim查找</tag>
+         
+        <tag>vim正则表达式</tag>
+         
+        <tag>Vim教程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-repeat-operation.html</loc>
+    <lastmod>2019-04-27T15:36:41.699Z</lastmod>
+    <data>
+        <display>
+        <title>Vim中的重复操作与高效率-Vim使用技巧(10)</title>
+        <pubTime>2015-02-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim宏</tag>
+         
+        <tag>vim-normal</tag>
+         
+        <tag>vim-global</tag>
+         
+        <tag>Vim重复操作</tag>
+         
+        <tag>vim重复查找</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-repeat-command.html</loc>
+    <lastmod>2019-04-27T15:36:41.695Z</lastmod>
+    <data>
+        <display>
+        <title>vim重复操作命令. (英文句点)-Vim入门教程(5)</title>
+        <pubTime>2013-04-30T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim命令</tag>
+         
+        <tag>vim重复操作</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-register.html</loc>
+    <lastmod>2019-04-27T15:36:41.691Z</lastmod>
+    <data>
+        <display>
+        <title>Vim寄存器-Vim入门教程(23)</title>
+        <pubTime>2013-10-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim寄存器</tag>
+         
+        <tag>vim无名寄存器</tag>
+         
+        <tag>Vim教程pdf</tag>
+         
+        <tag>vim系统剪贴板</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-recovery-cusor-position.html</loc>
+    <lastmod>2019-04-27T15:36:41.687Z</lastmod>
+    <data>
+        <display>
+        <title>Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)</title>
+        <pubTime>2015-04-14T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-autocmd</tag>
+         
+        <tag>vim位置标记</tag>
+         
+        <tag>Vim-mark</tag>
+         
+        <tag>vim恢复光标位置</tag>
+         
+        <tag>vim自动执行</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-process-file.html</loc>
+    <lastmod>2019-04-27T15:36:41.683Z</lastmod>
+    <data>
+        <display>
+        <title>使用Vim处理文本-Vim使用技巧(9)</title>
+        <pubTime>2014-06-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-substitute</tag>
+         
+        <tag>vim-global</tag>
+         
+        <tag>Vim使用技巧</tag>
+         
+        <tag>vim处理文本</tag>
+         
+        <tag>vim处理sitemap</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-powerline.html</loc>
+    <lastmod>2019-04-27T15:36:41.680Z</lastmod>
+    <data>
+        <display>
+        <title>使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)</title>
+        <pubTime>2014-01-14T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-powerline</tag>
+         
+        <tag>vim状态栏强化</tag>
+         
+        <tag>vim显示git状态</tag>
+         
+        <tag>powerline-segment</tag>
+         
+        <tag>powerline配置</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-pattern.html</loc>
+    <lastmod>2019-04-27T15:36:41.676Z</lastmod>
+    <data>
+        <display>
+        <title>Vim中的模式pattern-Vim入门教程(44)</title>
+        <pubTime>2016-05-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim模式</tag>
+         
+        <tag>vim-pattern</tag>
+         
+        <tag>vim子匹配</tag>
+         
+        <tag>子匹配引用</tag>
+         
+        <tag>vim列重排</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-normal-command.html</loc>
+    <lastmod>2019-04-27T15:36:41.673Z</lastmod>
+    <data>
+        <display>
+        <title>Vim normal命令和重复操作-Vim入门教程(33)</title>
+        <pubTime>2014-03-27T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim视频教程</tag>
+         
+        <tag>vim重复操作</tag>
+         
+        <tag>Vim-normal</tag>
+         
+        <tag>vim-norm</tag>
+         
+        <tag>vim-normal-command</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-modeline.html</loc>
+    <lastmod>2019-04-27T15:36:41.669Z</lastmod>
+    <data>
+        <display>
+        <title>Vim模式行及应用-Vim入门教程(53)</title>
+        <pubTime>2019-01-19T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim模式行</tag>
+         
+        <tag>vim-modeline</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-insert-mode-tips.html</loc>
+    <lastmod>2019-04-27T15:36:41.666Z</lastmod>
+    <data>
+        <display>
+        <title>Vim实用技巧-插入模式实用技巧</title>
+        <pubTime>2019-04-12T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim技巧</tag>
+         
+        <tag>Vim插入模式</tag>
+         
+        <tag>插入-普通模式</tag>
+         
+        <tag>Vim表达式寄存器</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-indent.html</loc>
+    <lastmod>2019-04-27T15:36:41.664Z</lastmod>
+    <data>
+        <display>
+        <title>Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)</title>
+        <pubTime>2014-01-22T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-autoindent</tag>
+         
+        <tag>vim自动缩进</tag>
+         
+        <tag>vim-tab键替换</tag>
+         
+        <tag>vim-shiftwidth</tag>
+         
+        <tag>vim-expandtab</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-ide-base.html</loc>
+    <lastmod>2019-04-27T15:36:41.658Z</lastmod>
+    <data>
+        <display>
+        <title>将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)</title>
+        <pubTime>2019-02-16T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim函数跳转</tag>
+         
+        <tag>Vim-IDE</tag>
+         
+        <tag>VI语法高亮</tag>
+         
+        <tag>vim自动补齐</tag>
+         
+        <tag>vim工程目录树展示</tag>
+         
+        <tag>Vim全局搜索</tag>
+         
+        <tag>Vim代码折叠</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-file-buffer.html</loc>
+    <lastmod>2019-04-27T15:36:41.655Z</lastmod>
+    <data>
+        <display>
+        <title>Vim文件缓冲区列表介绍-Vim入门教程(12)</title>
+        <pubTime>2013-07-28T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim命令</tag>
+         
+        <tag>Vim文件缓冲区</tag>
+         
+        <tag>vim-bnext</tag>
+         
+        <tag>vim-bprev</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-delete_m.html</loc>
+    <lastmod>2019-04-27T15:36:41.651Z</lastmod>
+    <data>
+        <display>
+        <title>怎么删除Vim文件中显示的^M字符-Vim技巧(15)</title>
+        <pubTime>2015-09-25T16:00:00.000Z</pubTime>
+        
+        <tag>Vim-M行尾</tag>
+         
+        <tag>vim结束符</tag>
+         
+        <tag>vim文件乱码</tag>
+         
+        <tag>vim-substitute</tag>
+         
+        <tag>Vim实用技巧</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-ctrlp-plugin.html</loc>
+    <lastmod>2019-04-27T15:36:41.646Z</lastmod>
+    <data>
+        <display>
+        <title>Vim模糊搜索插件ctrlp使用方法-Vim插件(12)</title>
+        <pubTime>2014-12-04T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-ctrlp</tag>
+         
+        <tag>vim模糊搜索</tag>
+         
+        <tag>vim-fzf</tag>
+         
+        <tag>vim插件推荐</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-ctag.html</loc>
+    <lastmod>2019-04-27T15:36:41.639Z</lastmod>
+    <data>
+        <display>
+        <title>Vim使用ctags实现函数跳转-Vim入门教程(13)</title>
+        <pubTime>2013-07-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim-tag</tag>
+         
+        <tag>vim标签</tag>
+         
+        <tag>Vim跳转</tag>
+         
+        <tag>vim-ctags</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-comment-uncomment-lines.html</loc>
+    <lastmod>2019-04-27T15:36:41.635Z</lastmod>
+    <data>
+        <display>
+        <title>Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)</title>
+        <pubTime>2014-01-02T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim可视化模式</tag>
+         
+        <tag>Vim注释多行</tag>
+         
+        <tag>vim取消注释</tag>
+         
+        <tag>vim宏</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-column-edit.html</loc>
+    <lastmod>2019-04-27T15:36:41.628Z</lastmod>
+    <data>
+        <display>
+        <title>Vim可视化模式与面向列编辑文本-Vim使用技巧(11)</title>
+        <pubTime>2015-02-22T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim可视化模式</tag>
+         
+        <tag>vim-markdwon</tag>
+         
+        <tag>列编辑</tag>
+         
+        <tag>vim表格</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-clear-last-search-hightlight.html</loc>
+    <lastmod>2019-04-27T15:36:41.621Z</lastmod>
+    <data>
+        <display>
+        <title>Vim清除上次的搜索高亮结果-Vim使用技巧(1)</title>
+        <pubTime>2013-12-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim搜索高亮</tag>
+         
+        <tag>vim关闭高亮</tag>
+         
+        <tag>vim-noh</tag>
+         
+        <tag>vim-nohlsearch</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-chinese-cheatsheet.html</loc>
+    <lastmod>2019-04-27T15:36:41.612Z</lastmod>
+    <data>
+        <display>
+        <title>Vim中文键盘速查表详细介绍-Vim入门教程(50)</title>
+        <pubTime>2018-05-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-chinese-cheatsheet</tag>
+         
+        <tag>vim键盘速查</tag>
+         
+        <tag>vim键盘图</tag>
+         
+        <tag>vim命令索引</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-change.html</loc>
+    <lastmod>2019-04-27T15:36:41.596Z</lastmod>
+    <data>
+        <display>
+        <title>Vim删除并进入插入模式命令c(change)-Vim入门教程(21)</title>
+        <pubTime>2013-10-01T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim修改命令</tag>
+         
+        <tag>vim命令change</tag>
+         
+        <tag>vim教程pdf</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-args-argdo.html</loc>
+    <lastmod>2019-04-27T15:36:41.584Z</lastmod>
+    <data>
+        <display>
+        <title>Vim参数列表args和argdo命令-Vim入门教程(38)</title>
+        <pubTime>2014-08-01T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim参数列表</tag>
+         
+        <tag>vim-args</tag>
+         
+        <tag>vim-argdo</tag>
+         
+        <tag>vim批量操作文件</tag>
+         
+        <tag>vim通配符</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/jedi-vim-plugin.html</loc>
+    <lastmod>2019-04-27T15:36:41.571Z</lastmod>
+    <data>
+        <display>
+        <title>Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法</title>
+        <pubTime>2019-04-01T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>jedi-vim</tag>
+         
+        <tag>vim-python插件</tag>
+         
+        <tag>python-vim</tag>
+         
+        <tag>Vim自动补全</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/10-light-vim-color-scheme.html</loc>
+    <lastmod>2019-04-27T15:36:41.540Z</lastmod>
+    <data>
+        <display>
+        <title>2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)</title>
+        <pubTime>2017-04-08T16:00:00.000Z</pubTime>
+        
+        <tag>Vim配色方案</tag>
+         
+        <tag>vim主题颜色</tag>
+         
+        <tag>vim-color-scheme</tag>
+         
+        <tag>Vim-python配色</tag>
+         
+        <tag>vim-ruby-on-rails</tag>
+         
+        <tag>vim-Solarized</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-write-quit.html</loc>
+    <lastmod>2019-04-27T15:35:46.185Z</lastmod>
+    <data>
+        <display>
+        <title>Vim入门教程-14种退出Vim的方法及区别</title>
+        <pubTime>2019-04-15T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim命令</tag>
+         
+        <tag>退出Vim</tag>
+         
+        <tag>quit-vim</tag>
+         
+        <tag>Vim保存文件</tag>
+         
+        <tag>Vim-ZZ</tag>
+         
+        <tag>VIM-ZQ</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-write-file.html</loc>
+    <lastmod>2019-04-27T15:35:46.181Z</lastmod>
+    <data>
+        <display>
+        <title>怎么合适地使用Vim保存文件？-Vim使用技巧(13)</title>
+        <pubTime>2015-04-20T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-write-command</tag>
+         
+        <tag>vim-update</tag>
+         
+        <tag>vim-saveas</tag>
+         
+        <tag>Vim另存为</tag>
+         
+        <tag>vim保存命令</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-world.html</loc>
+    <lastmod>2019-04-27T15:35:46.178Z</lastmod>
+    <data>
+        <display>
+        <title>Vim基于单词移动及Vim单词、字串概念-Vim入门教程(22)</title>
+        <pubTime>2013-10-03T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim单词移动</tag>
+         
+        <tag>vim单词和字串</tag>
+         
+        <tag>vim-word</tag>
+         
+        <tag>vim-ge</tag>
+         
+        <tag>vim-bwe</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-substitute-introduce.html</loc>
+    <lastmod>2019-04-27T15:35:46.168Z</lastmod>
+    <data>
+        <display>
+        <title>再谈Vim substitute替换命令-Vim入门教程(54)</title>
+        <pubTime>2019-01-25T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim操作范围</tag>
+         
+        <tag>Vim替换原理</tag>
+         
+        <tag>vi-subsititute</tag>
+         
+        <tag>VIM部分替换</tag>
+         
+        <tag>Vim替换确认</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-split-window.html</loc>
+    <lastmod>2019-04-27T15:35:46.160Z</lastmod>
+    <data>
+        <display>
+        <title>Vim屏幕分割(分屏)功能介绍-Vim入门教程(19)</title>
+        <pubTime>2013-09-20T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim屏幕分割</tag>
+         
+        <tag>vim分屏</tag>
+         
+        <tag>vim切换屏幕</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-spell-check.html</loc>
+    <lastmod>2019-04-27T15:35:46.157Z</lastmod>
+    <data>
+        <display>
+        <title>Vim单词拼写检查与更正-Vim入门教程(52)</title>
+        <pubTime>2019-01-09T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-spell</tag>
+         
+        <tag>vim拼写更正</tag>
+         
+        <tag>spelllang</tag>
+         
+        <tag>vim-zg-zw</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-shell.html</loc>
+    <lastmod>2019-04-27T15:35:46.153Z</lastmod>
+    <data>
+        <display>
+        <title>Vim执行shell命令及使用Vim批量更改文件名-Vim入门教程(40)</title>
+        <pubTime>2014-11-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-write</tag>
+         
+        <tag>Vim-shell</tag>
+         
+        <tag>vim批量改名</tag>
+         
+        <tag>vim外部命令</tag>
+         
+        <tag>vim-read</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-search-offset.html</loc>
+    <lastmod>2019-04-27T15:35:46.144Z</lastmod>
+    <data>
+        <display>
+        <title>Vim查找偏移-Vim使用技巧(16)</title>
+        <pubTime>2015-12-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-search-offset</tag>
+         
+        <tag>vim搜索偏移</tag>
+         
+        <tag>vim查找偏移</tag>
+         
+        <tag>vim正则表达式查找</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-recording.html</loc>
+    <lastmod>2019-04-27T15:35:46.133Z</lastmod>
+    <data>
+        <display>
+        <title>Vim宏录制与重复操作-Vim入门教程(28)</title>
+        <pubTime>2013-11-30T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim视频教程</tag>
+         
+        <tag>vim重复操作</tag>
+         
+        <tag>Vim宏</tag>
+         
+        <tag>vim-recording</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-nerdtree-plugin.html</loc>
+    <lastmod>2019-04-27T15:35:46.115Z</lastmod>
+    <data>
+        <display>
+        <title>Vim插件NERD tree介绍与使用方法-Vim入门教程(26)</title>
+        <pubTime>2013-11-16T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim插件NERDtree</tag>
+         
+        <tag>vim-NERDTree</tag>
+         
+        <tag>vim文件管理</tag>
+         
+        <tag>Vim树形目录</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-line-downward.html</loc>
+    <lastmod>2019-04-27T15:35:46.112Z</lastmod>
+    <data>
+        <display>
+        <title>Vim光标移动之实际行与屏幕行-Vim入门教程(47)</title>
+        <pubTime>2017-05-19T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim光标移动</tag>
+         
+        <tag>Vim-line-downward</tag>
+         
+        <tag>vim屏幕行移动</tag>
+         
+        <tag>vim-gj</tag>
+         
+        <tag>vim-gk</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-leader.html</loc>
+    <lastmod>2019-04-27T15:35:46.104Z</lastmod>
+    <data>
+        <display>
+        <title>Vim快捷键和前缀键Leader-Vim入门教程(29)</title>
+        <pubTime>2013-12-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-leader</tag>
+         
+        <tag>vim-map</tag>
+         
+        <tag>vim前缀键</tag>
+         
+        <tag>Vim快捷键</tag>
+         
+        <tag>Vim中文教程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-inside-around.html</loc>
+    <lastmod>2019-04-27T15:35:46.099Z</lastmod>
+    <data>
+        <display>
+        <title>Vim文本周边around、内部inside命令-Vim入门教程(24)</title>
+        <pubTime>2013-10-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim-aw</tag>
+         
+        <tag>vim-iw</tag>
+         
+        <tag>vim-as</tag>
+         
+        <tag>vim-is</tag>
+         
+        <tag>vim-ip-ap</tag>
+         
+        <tag>Vim教程pdf</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-indentLine-plugin.html</loc>
+    <lastmod>2019-04-27T15:35:46.091Z</lastmod>
+    <data>
+        <display>
+        <title>Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用</title>
+        <pubTime>2019-03-20T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Python-Vim插件</tag>
+         
+        <tag>vim插件</tag>
+         
+        <tag>Vim-indentLine</tag>
+         
+        <tag>Vim缩进显示</tag>
+         
+        <tag>vim-conceal</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-incsearch.html</loc>
+    <lastmod>2019-04-27T15:35:46.087Z</lastmod>
+    <data>
+        <display>
+        <title>Vim增量查找与incsearch实时查找预览-Vim入门教程(43)</title>
+        <pubTime>2015-11-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-incsearch</tag>
+         
+        <tag>vim实时搜索</tag>
+         
+        <tag>vim查找预览</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-gutentags.html</loc>
+    <lastmod>2019-04-27T15:35:46.081Z</lastmod>
+    <data>
+        <display>
+        <title>Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)</title>
+        <pubTime>2014-02-24T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-gutentags</tag>
+         
+        <tag>vim-tag生成工具</tag>
+         
+        <tag>vim自动tag</tag>
+         
+        <tag>vim增量更新tags</tag>
+         
+        <tag>vim函数跳转</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vimgrep.html</loc>
+    <lastmod>2019-04-27T15:35:46.077Z</lastmod>
+    <data>
+        <display>
+        <title>Vim grep命令及其使用-Vim入门教程(51)</title>
+        <pubTime>2018-11-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-grep</tag>
+         
+        <tag>vimgrep</tag>
+         
+        <tag>grepprg</tag>
+         
+        <tag>grepformat</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-global-command.html</loc>
+    <lastmod>2019-04-27T15:35:46.071Z</lastmod>
+    <data>
+        <display>
+        <title>Vim global命令和重复操作-Vim入门教程(31)</title>
+        <pubTime>2014-01-27T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-global</tag>
+         
+        <tag>vim视频教程</tag>
+         
+        <tag>vim-g</tag>
+         
+        <tag>vim重复操作</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-fzf-plugin.html</loc>
+    <lastmod>2019-04-27T15:35:46.066Z</lastmod>
+    <data>
+        <display>
+        <title>模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)</title>
+        <pubTime>2014-04-29T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim插件</tag>
+         
+        <tag>Vim-fzf</tag>
+         
+        <tag>fuZzy-finder</tag>
+         
+        <tag>FZF</tag>
+         
+        <tag>vim-Files</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-fswitch.html</loc>
+    <lastmod>2019-04-27T15:35:46.063Z</lastmod>
+    <data>
+        <display>
+        <title>Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)</title>
+        <pubTime>2013-09-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim文件切换</tag>
+         
+        <tag>vim-fswitch</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-fold.html</loc>
+    <lastmod>2019-04-27T15:35:46.061Z</lastmod>
+    <data>
+        <display>
+        <title>Vim代码折叠-Vim入门教程(15)</title>
+        <pubTime>2013-08-28T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim视频教程</tag>
+         
+        <tag>Vim折叠</tag>
+         
+        <tag>vim-foldmethod</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-find-char.html</loc>
+    <lastmod>2019-04-27T15:35:46.057Z</lastmod>
+    <data>
+        <display>
+        <title>Vim字符查找与光标快速移动-Vim入门教程(32)</title>
+        <pubTime>2014-02-28T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-f</tag>
+         
+        <tag>vim字符查找</tag>
+         
+        <tag>vim-T</tag>
+         
+        <tag>vim视频教程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-filetype.html</loc>
+    <lastmod>2019-04-27T15:35:46.054Z</lastmod>
+    <data>
+        <display>
+        <title>Vim文件类型检测原理及应用-Vim入门教程(41)</title>
+        <pubTime>2015-01-21T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-filetype</tag>
+         
+        <tag>vim-filetype-indent</tag>
+         
+        <tag>vim文件类型检测</tag>
+         
+        <tag>vim-autocmd</tag>
+         
+        <tag>vim模式行</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-extract-odd-or-even-line-2.html</loc>
+    <lastmod>2019-04-27T15:35:46.046Z</lastmod>
+    <data>
+        <display>
+        <title>Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)</title>
+        <pubTime>2016-09-14T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim奇偶行分离</tag>
+         
+        <tag>vim-normal</tag>
+         
+        <tag>normal命令原理</tag>
+         
+        <tag>normal-jdd</tag>
+         
+        <tag>normal-jkdd</tag>
+         
+        <tag>vim技巧</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-extract-odd-or-even-line.html</loc>
+    <lastmod>2019-04-27T15:35:46.042Z</lastmod>
+    <data>
+        <display>
+        <title>Vim处理文本之奇偶行删除-Vim使用技巧(17)</title>
+        <pubTime>2016-04-14T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim奇偶行分离</tag>
+         
+        <tag>vim-global</tag>
+         
+        <tag>global命令原理</tag>
+         
+        <tag>g/^/+d</tag>
+         
+        <tag>g/^/d|m.</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-ex-command.html</loc>
+    <lastmod>2019-04-27T15:35:46.039Z</lastmod>
+    <data>
+        <display>
+        <title>Vim命令行模式与Ex命令-Vim入门教程(42)</title>
+        <pubTime>2015-02-13T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-ex-command</tag>
+         
+        <tag>vim命令行模式</tag>
+         
+        <tag>vim操作范围</tag>
+         
+        <tag>vim地址偏移</tag>
+         
+        <tag>vim-print</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-edit-and-wrie-file.html</loc>
+    <lastmod>2019-04-27T15:35:46.035Z</lastmod>
+    <data>
+        <display>
+        <title>Vim打开和保存文件-Vim使用技巧(7)</title>
+        <pubTime>2014-04-27T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-edit</tag>
+         
+        <tag>vim-write</tag>
+         
+        <tag>vim-%:h</tag>
+         
+        <tag>vimtutor</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-delimitmate-plugin.html</loc>
+    <lastmod>2019-04-27T15:35:46.029Z</lastmod>
+    <data>
+        <display>
+        <title>Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)</title>
+        <pubTime>2017-09-24T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-delimitMate</tag>
+         
+        <tag>vim插件</tag>
+         
+        <tag>自动补齐</tag>
+         
+        <tag>vim-surround</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-cursorline-column.html</loc>
+    <lastmod>2019-04-27T15:35:46.023Z</lastmod>
+    <data>
+        <display>
+        <title>Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)</title>
+        <pubTime>2014-01-20T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim行跳转</tag>
+         
+        <tag>vim列跳转</tag>
+         
+        <tag>vim文件首行</tag>
+         
+        <tag>vim-gg</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-copy-move-command.html</loc>
+    <lastmod>2019-04-27T15:35:46.018Z</lastmod>
+    <data>
+        <display>
+        <title>Vim复制命令copy和移动命令move-Vim入门教程(36)</title>
+        <pubTime>2014-05-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-copy-command</tag>
+         
+        <tag>vim-move-command</tag>
+         
+        <tag>Vim行复制</tag>
+         
+        <tag>Vim行移动</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-cmdwin.html</loc>
+    <lastmod>2019-04-27T15:35:46.001Z</lastmod>
+    <data>
+        <display>
+        <title>Vim入门教程-命令行窗口(cmdwin)</title>
+        <pubTime>2019-04-13T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-cmdwin</tag>
+         
+        <tag>命令行窗口</tag>
+         
+        <tag>Vim命令历史</tag>
+         
+        <tag>Ex命令</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-autocmd.html</loc>
+    <lastmod>2019-04-27T15:35:45.962Z</lastmod>
+    <data>
+        <display>
+        <title>Vim命令autocmd及新文件自动生成注释-Vim入门教程(39)</title>
+        <pubTime>2014-10-20T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-autocmd</tag>
+         
+        <tag>vim自动注释</tag>
+         
+        <tag>vim事件监听</tag>
+         
+        <tag>vim-BufNewFile</tag>
+         
+        <tag>vim-FileType</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/install-vim-and-vimcdoc.html</loc>
+    <lastmod>2019-04-27T15:35:45.936Z</lastmod>
+    <data>
+        <display>
+        <title>vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)</title>
+        <pubTime>2014-02-14T16:00:00.000Z</pubTime>
+        
+        <tag>vim安装方法</tag>
+         
+        <tag>vim8编译</tag>
+         
+        <tag>vimcdoc</tag>
+         
+        <tag>vim中文帮助</tag>
+         
+        <tag>Vim教程网</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-very-magic.html</loc>
+    <lastmod>2019-04-27T15:34:36.607Z</lastmod>
+    <data>
+        <display>
+        <title>Vim搜索字符转义与very magic搜索模式-Vim使用技巧(14)</title>
+        <pubTime>2015-05-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim正则表达式</tag>
+         
+        <tag>Vim-very-magic</tag>
+         
+        <tag>vim-nomagic</tag>
+         
+        <tag>vim搜索模式</tag>
+         
+        <tag>vim搜索转义</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-tips.html</loc>
+    <lastmod>2019-04-27T15:34:36.604Z</lastmod>
+    <data>
+        <display>
+        <title>30个Vim常用命令和使用技巧整理 (长期更新)</title>
+        <pubTime>2014-05-27T16:00:00.000Z</pubTime>
+        
+        <tag>vimtutor</tag>
+         
+        <tag>vim命令</tag>
+         
+        <tag>Vim技巧</tag>
+         
+        <tag>Vim中文教程</tag>
+         
+        <tag>vim使用方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim技巧" url="https://vim.ink/categories/Vim%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-surround-plugin.html</loc>
+    <lastmod>2019-04-27T15:34:36.600Z</lastmod>
+    <data>
+        <display>
+        <title>Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)</title>
+        <pubTime>2013-11-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim插件surround</tag>
+         
+        <tag>vim-surrounding</tag>
+         
+        <tag>vim配对插件</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-session.html</loc>
+    <lastmod>2019-04-27T15:34:36.588Z</lastmod>
+    <data>
+        <display>
+        <title>Vim的session保存和会话恢复-Vim入门教程(48)</title>
+        <pubTime>2017-10-09T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-session</tag>
+         
+        <tag>vim会话文件</tag>
+         
+        <tag>Vim会话保存和恢复</tag>
+         
+        <tag>mksession</tag>
+         
+        <tag>sessionoptions</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-quickfix.html</loc>
+    <lastmod>2019-04-27T15:34:36.584Z</lastmod>
+    <data>
+        <display>
+        <title>Vim的quickfix列表介绍-Vim入门教程(45)</title>
+        <pubTime>2016-07-06T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim-quickfix</tag>
+         
+        <tag>vim编译代码</tag>
+         
+        <tag>vim高效技巧</tag>
+         
+        <tag>vim-makeprg</tag>
+         
+        <tag>vim-errorformat</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-plug.html</loc>
+    <lastmod>2019-04-27T15:34:36.576Z</lastmod>
+    <data>
+        <display>
+        <title>Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)</title>
+        <pubTime>2014-02-01T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim插件管理</tag>
+         
+        <tag>vim-plug</tag>
+         
+        <tag>vim按需加载</tag>
+         
+        <tag>vim-on-demand-loading</tag>
+         
+        <tag>vim-plugdiff</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-operate-muliple-line.html</loc>
+    <lastmod>2019-04-27T15:34:36.573Z</lastmod>
+    <data>
+        <display>
+        <title>Vim跨行操作与Ex命令操作范围-Vim入门教程(46)</title>
+        <pubTime>2016-10-09T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim操作范围</tag>
+         
+        <tag>vim跨行删除</tag>
+         
+        <tag>vim正则表达式多行</tag>
+         
+        <tag>vim换行符</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-keycastow.html</loc>
+    <lastmod>2019-04-27T15:34:36.560Z</lastmod>
+    <data>
+        <display>
+        <title>windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)</title>
+        <pubTime>2013-11-22T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>windows显示键盘按键</tag>
+         
+        <tag>vim视频教程录制</tag>
+         
+        <tag>windows-KeyCastOW</tag>
+         
+        <tag>windows-keycastr</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-goto-file.html</loc>
+    <lastmod>2019-04-27T15:34:36.544Z</lastmod>
+    <data>
+        <display>
+        <title>Vim文件间跳转-Vim入门教程(49)</title>
+        <pubTime>2018-04-14T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-gf</tag>
+         
+        <tag>vim-goto-file</tag>
+         
+        <tag>vim标记</tag>
+         
+        <tag>Vim-jumps</tag>
+         
+        <tag>vim-suffixesadd</tag>
+         
+        <tag>vim-path</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-auto-complement.html</loc>
+    <lastmod>2019-04-27T15:34:36.457Z</lastmod>
+    <data>
+        <display>
+        <title>Vim自带自动补齐功能-Vim入门教程(11)</title>
+        <pubTime>2013-07-10T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim自动补齐</tag>
+         
+        <tag>vim自动补全</tag>
+         
+        <tag>vim自定义字典补齐</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-color-schemes.html</loc>
+    <lastmod>2019-04-23T15:42:22.636Z</lastmod>
+    <data>
+        <display>
+        <title>15个著名的Vim配色方案整理-Vim入门教程(7)</title>
+        <pubTime>2013-05-31T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim配色方案</tag>
+         
+        <tag>vim-color-scheme</tag>
+         
+        <tag>vim配置</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-operator-and-motion.html</loc>
+    <lastmod>2019-03-04T16:35:54.005Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈Vim中的操作符和动作命令-Vim入门教程(32)</title>
+        <pubTime>2014-03-19T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim操作符</tag>
+         
+        <tag>vim动作命令</tag>
+         
+        <tag>vim-operator</tag>
+         
+        <tag>vim-motion</tag>
+         
+        <tag>vim语法</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-mark.html</loc>
+    <lastmod>2019-01-05T06:27:56.168Z</lastmod>
+    <data>
+        <display>
+        <title>Vim位置标记mark详解-Vim入门教程(34)</title>
+        <pubTime>2014-04-04T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim标记</tag>
+         
+        <tag>vim标注</tag>
+         
+        <tag>vim-mark</tag>
+         
+        <tag>vim位置标记</tag>
+         
+        <tag>vim文档跳转</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-ctrl-s.html</loc>
+    <lastmod>2018-09-22T23:36:53.628Z</lastmod>
+    <data>
+        <display>
+        <title>Vim中ctrl s卡死解决方法和设置ctrl s为保存文件功能-Vim入门教程(4)</title>
+        <pubTime>2013-04-20T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim卡死</tag>
+         
+        <tag>vim-Ctrl-s</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/viminfo.html</loc>
+    <lastmod>2018-09-22T23:33:23.551Z</lastmod>
+    <data>
+        <display>
+        <title>viminfo文件介绍与使用-Vim入门教程(35)</title>
+        <pubTime>2014-04-19T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vimtutor</tag>
+         
+        <tag>viminfo</tag>
+         
+        <tag>viminfo配置</tag>
+         
+        <tag>vim恢复上次打开</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-plugin-manager.html</loc>
+    <lastmod>2018-08-22T15:53:49.541Z</lastmod>
+    <data>
+        <display>
+        <title>Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)</title>
+        <pubTime>2013-06-07T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim配置</tag>
+         
+        <tag>Vim插件管理</tag>
+         
+        <tag>Pathogen</tag>
+         
+        <tag>Vim-Vundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim插件" url="https://vim.ink/categories/Vim%E6%8F%92%E4%BB%B6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-paste.html</loc>
+    <lastmod>2018-08-06T16:07:56.683Z</lastmod>
+    <data>
+        <display>
+        <title>Vim右键粘贴格式错乱解决方法-Vim入门教程(16)</title>
+        <pubTime>2013-09-01T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>Vim粘贴乱码</tag>
+         
+        <tag>vim右键粘贴</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-copy-delete-register.html</loc>
+    <lastmod>2018-08-06T15:50:52.928Z</lastmod>
+    <data>
+        <display>
+        <title>Vim剪切、复制、粘贴和删除操作与Vim无名寄存器-Vim入门教程(20)</title>
+        <pubTime>2013-09-30T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim寄存器</tag>
+         
+        <tag>vim无名寄存器</tag>
+         
+        <tag>vim复制粘贴</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-map.html</loc>
+    <lastmod>2018-07-15T10:28:57.543Z</lastmod>
+    <data>
+        <display>
+        <title>Vim快捷键和键盘映射-Vim入门教程(30)</title>
+        <pubTime>2013-12-26T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>vim-map</tag>
+         
+        <tag>Vim键盘映射</tag>
+         
+        <tag>vim快捷键</tag>
+         
+        <tag>vim-nnoremap</tag>
+         
+        <tag>vim-leader</tag>
+         
+        <tag>vim中文教程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-substitute-2.html</loc>
+    <lastmod>2018-01-27T15:47:36.501Z</lastmod>
+    <data>
+        <display>
+        <title>Vim替换命令substitute重用上次的查找模式-Vim入门教程(18)</title>
+        <pubTime>2013-09-13T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim视频教程</tag>
+         
+        <tag>vim技巧</tag>
+         
+        <tag>Vim替换</tag>
+         
+        <tag>vim搜索</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://vim.ink/vim-ranges.html</loc>
+    <lastmod>2018-01-21T08:29:20.299Z</lastmod>
+    <data>
+        <display>
+        <title>Vim操作范围、文件范围介绍-Vim入门教程(14)</title>
+        <pubTime>2013-08-09T16:00:00.000Z</pubTime>
+        
+        <tag>Vim教程网</tag>
+         
+        <tag>Vim卡死</tag>
+         
+        <tag>vim Ctrl s</tag>
+         
+         
+           
+             
+              <breadCrumb title="Vim入门教程" url="https://vim.ink/categories/Vim%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>

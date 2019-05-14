@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim卡死,vim Ctrl s,Vim教程网,vim中文教程,vim教程pdf">
+   
+  
+  <meta name="description" content="模糊搜索神器fzf作为Vim插件vim-fzf的使用方法介绍和插件配置，使用vim-plug安装Vim插件vim-fzf，Files、FZF命令。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-fzf-plugin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim插件/">Vim插件</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2014-04-30
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">fzf</a> (FuZzy Finder)是一个使用go语言开发的模糊搜索工具，可以在bash、tmux等环境使用，也可以作为一种Vim插件来增强Vim的功能。</p>
+<p>fzf本身并不是一个Vim 插件，作者在github上的fzf项目中只提供了基本的wrapper函数(比如fzf#run)，直接在Vim中使用fzf只能使用基本的命令，如 <code>:FZF</code>，<code>:FZF!</code>。但后来作者发现很多人并不熟悉VIMScript, 所以创建了一个新的github项目<a href="https://github.com/junegunn/fzf.vim" target="_blank" rel="noopener">fzf.vim</a>，提供了一系列默认的Vim插件配置和按键映射，如 <code>:Files</code>、<code>:Colors</code> 等命令。原文如下：</p>
+<blockquote>
+<p>fzf in itself is not a Vim plugin, and the official repository only provides the basic wrapper function for Vim and it’s up to the users to write their own Vim commands with it. However, I’ve learned that many users of fzf are not familiar with Vimscript and are looking for the “default” implementation of the features they can find in the alternative Vim plugins</p>
+</blockquote>
+<p>所以，如果希望在Vim下使用更加强大的fzf，建议你<strong>同时安装</strong> fzf 和 fzf.vim 两个项目。</p>
+<h4 id="1-fzf安装方法"><a href="#1-fzf安装方法" class="headerlink" title="1. fzf安装方法"></a>1. fzf安装方法</h4><p>fzf支持多种安装方式，本文只介绍其作为Vim插件时使用<a href="https://vim.ink/vim-plugin-manager.html">Vundle</a>或<a href="https://vim.ink/vim-plug.html">vim-plug</a>等Vim插件管理器的安装方法。fzf官方推荐使用vim-plug来安装 fzf 和 fzf.vim。</p>
+<p>如果使用vim-plug安装，需要在 <code>~/.vimrc</code> 中增加以下两项配置，并在Vim命令行模式下执行 <code>:PlugInstall</code>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plug <span class="string">'junegunn/fzf'</span>, &#123; <span class="string">'dir'</span>: <span class="string">'~/.fzf'</span>, <span class="string">'do'</span>: <span class="string">'./install --all'</span> &#125;,</span><br><span class="line">Plug <span class="string">'junegunn/fzf.vim'</span>,</span><br></pre></td></tr></table></figure></p>
+<p>当然，上面通过dir指定的路径可以自行指定。</p>
+<p>如果使用Vundle安装，需要在 <code>~/.vimrc</code> 中增加以下两项配置，并在Vim命令行模式执行 <code>:PluginInstall</code> 或在bash命令行执行命令 <code>vim +PluginInstall +qall</code>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plugin <span class="string">'junegunn/fzf'</span>,</span><br><span class="line">Plugin <span class="string">'junegunn/fzf.vim'</span>,</span><br></pre></td></tr></table></figure></p>
+<p><strong>注</strong>：使用Vundle安装fzf后，第一次在Vim中执行 <code>:FZF</code> 命令时可能会提示 ‘fzf executable not found. Download binary? (y/n)’，选y进行下载即可。</p>
+<p>关于使用vim-plug和Vundle安装Vim插件的具体方法，在这里不再赘述，具体可参考Vim教程网上的文章<a href="https://vim.ink/vim-plug.html">Vim插件管理vim-plug</a>以及<a href="https://vim.ink/vim-plugin-manager.html">Vim插件管理器Vundle</a>。</p>
+<h4 id="2-fzf配置"><a href="#2-fzf配置" class="headerlink" title="2. fzf配置"></a>2. fzf配置</h4><p>fzf 提供了<em>环境变量</em> 配置参数 <code>FZF_DEFAULT_COMMAND</code> 用来设置默认的调用命令，以及 <code>FZF_DEFAULT_OPTS</code> 参数用来设置 fzf 的界面展示样式。</p>
+<p>如果是使用 fzf 来查找文件，其底层实际是调用的Linux操作系统 <code>find</code> 命令，可通过设置 <code>FZF_DEFAULT_COMMAND</code> 变量来修改使用的程序，例如，可以使用 <a href="https://github.com/sharkdp/fd" target="_blank" rel="noopener">fd</a> 来替换 <code>find</code> 作为fzf查找文件时调用的程序，<code>export FZF_DEFAULT_COMMAND=&quot;fd --type f&quot;</code>。</p>
+<p>fzf的展示窗口样式可通过 <code>FZF_DEFAULT_OPTS</code> 变量进行设置，例如，<code>export FZF_DEFAULT_OPTS=&quot;--height 40% --layout=reverse --preview &#39;cat {} 2&gt; /dev/null | head -500&#39;&quot;</code> 用于指定在屏幕右侧调用cat命令显示文件的前500行内容作为预览界面，关于界面展示的更多参数介绍，使用通过 <code>fzf --help</code> 进行获取。</p>
+<h4 id="3-Vim-fzf使用方法"><a href="#3-Vim-fzf使用方法" class="headerlink" title="3. Vim fzf使用方法"></a>3. Vim fzf使用方法</h4><p>系统中安装完 fzf 后便可以在Vim命令行模式使用 <code>:FZF</code> 来列出当前目录下所有的文件，可以通过 <code>Ctrl-k</code> 或 <code>Ctrl-j</code> 来上下移动选择目标文件。</p>
+<p>类似于 <strong>ctrlp</strong>，可以使用 <code>Ctrl-T</code> 在当前窗口打开选中的文件, 使用 <code>Ctrl-X</code> 在一个新的tab标签页打开选中的文件，或使用 <code>Ctrl-V</code> 在垂直分屏窗口打开选中的文件。</p>
+<p>而如果系统中还安装了 <strong>fzf.vim</strong> 插件，则可以使用针对Vim进行过特定配置的升级版 fzf 命令 (这些命令大都是 fzf 调用某个工具，如git、ctags等产生对应文件)，如：查找当前 Buffer、Tag、标记，切换Vim窗口，更换<a href="https://vim.ink/vim-color-schemes.html">vim 主题配色</a>等。</p>
+<p>fzf.vim 支持的命令及对应命令功能列表如下：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>列出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:Files [path]</code></td>
+<td>列出path路径下的所有文件 (功能等价于 <code>:FZF</code> 命令)</td>
+</tr>
+<tr>
+<td><code>:Buffers</code></td>
+<td>文件缓冲区切换</td>
+</tr>
+<tr>
+<td><code>:Colors</code></td>
+<td>选择Vim配色方案</td>
+</tr>
+<tr>
+<td><code>:Tags [QUERY]</code></td>
+<td>当前项目中的Tag (等价于：<code>ctags -R</code>)</td>
+</tr>
+<tr>
+<td><code>:BTags [QUERY]</code></td>
+<td>当前活动缓冲区的标记</td>
+</tr>
+<tr>
+<td><code>:Marks</code></td>
+<td>所有Vin标记</td>
+</tr>
+<tr>
+<td><code>:Windows</code></td>
+<td>窗口</td>
+</tr>
+<tr>
+<td><code>:Lines [QUERY]</code></td>
+<td>在所有加载的文件缓冲区里包含目标词的所有行</td>
+</tr>
+<tr>
+<td><code>BLines [QUERY]</code></td>
+<td>在当前文件缓冲区里包含目标词的行</td>
+</tr>
+<tr>
+<td><code>Locate PATTERN</code></td>
+<td><code>locate</code> command output</td>
+</tr>
+<tr>
+<td><code>History</code></td>
+<td><code>v:oldfiles</code> and open buffers</td>
+</tr>
+<tr>
+<td><code>History:</code></td>
+<td>命令行命令历史</td>
+</tr>
+<tr>
+<td><code>History/</code></td>
+<td>搜索历史</td>
+</tr>
+<tr>
+<td><code>Commands</code></td>
+<td>Vim命令列表</td>
+</tr>
+<tr>
+<td><code>Maps</code></td>
+<td>普通模式下的按键映射</td>
+</tr>
+<tr>
+<td><code>Snippets</code></td>
+<td>Snippets ([UltiSnips][us])</td>
+</tr>
+<tr>
+<td><code>Commits</code></td>
+<td>Git commits (requires [fugitive.vim][f])</td>
+</tr>
+<tr>
+<td><code>BCommits</code></td>
+<td>Git commits for the current buffer</td>
+</tr>
+<tr>
+<td><code>GFiles [OPTS]</code></td>
+<td>Git files (<code>git ls-files</code>)</td>
+</tr>
+<tr>
+<td><code>GFiles?</code></td>
+<td>Git files (<code>git status</code>)</td>
+</tr>
+<tr>
+<td><code>Ag [PATTERN]</code></td>
+<td>[ag][ag] search result (<code>ALT-A</code> to select all, <code>ALT-D</code> to deselect all)</td>
+</tr>
+<tr>
+<td><code>Rg [PATTERN]</code></td>
+<td>[rg][rg] search result (<code>ALT-A</code> to select all, <code>ALT-D</code> to deselect all)</td>
+</tr>
+<tr>
+<td><code>Filetypes</code></td>
+<td>File types</td>
+</tr>
+</tbody>
+</table>
+<p>例如，<code>:Files</code> 命令与 <code>:FZF</code> 命令具有相同的作用：列出指定路径下的所有文件，选中后vim会打开选中的文件。<br><img src="https://image.vim.ink/images/691e0c29gy1fvqt8m00g1g20qq0due3y.gif" alt="fzf-Files"></p>
+<p><code>:Buffers</code> 命令用于在存在于buffer中的文件间切换，功能等价于 <code>:bnext</code> 等命令，更多内容可参考<a href="https://vim.ink/vim-file-buffer.html">Vim文件缓冲区列表介绍</a>。<br><img src="https://image.vim.ink/images/691e0c29gy1fvqt8945mig20qq0dun9z.gif" alt="fzf-Buffers"></p>
+<p><code>Lines &lt;keyword&gt;</code> 命令用于在所有加载的文件缓冲区中查找含有某个关键词的行，而 <code>:BLines</code> 命令只在当前缓冲区里查找。<br><img src="https://image.vim.ink/images/691e0c29gy1fvqt7n54qig20qq0dugqj.gif" alt="fzf-Lines"></p>
+<p><code>:Colors</code> 用来修改当前Vim窗口使用的配色方案。<br><img src="https://image.vim.ink/images/691e0c29gy1fvqt7c9exig20qq0duq7o.gif" alt="fzf-Colors"></p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-fzf-plugin.html&title=《模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)》 — vim教程网&pic=images/vim48.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-fzf-plugin.html&title=《模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-fzf-plugin.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《模糊搜索神器fzf介绍及在Vim中的使用-Vim插件(11)》 — vim教程网&url=https://vim.ink/vim-fzf-plugin.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-fzf-plugin.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-fzf-plugin.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-autopep8-plugin.html" title="Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用" target="_blank">Vim插件推荐-Python PEP8规范自动格式化插件vim-autopep8安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/jedi-vim-plugin.html" title="Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法" target="_blank">Vim插件推荐-Python自动补齐Vim插件jedi-vim的安装与使用方法</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indentLine-plugin.html" title="Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用" target="_blank">Vim插件推荐-Python缩进指示Vim插件indentLine安装和使用</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-youcompleteme-install.html" title="Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)" target="_blank">Vim自动补齐插件YouCompleteMe安装指南(2019年最新)-Vim插件(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delimitmate-plugin.html" title="Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)" target="_blank">Vim括号/引号自动补齐和匹配插件delimitMate-Vim插件(14)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/10-light-vim-color-scheme.html" title="2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)" target="_blank">2017年排名前10的暗黑简约型vim配色方案-Vim插件(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctrlp-plugin.html" title="Vim模糊搜索插件ctrlp使用方法-Vim插件(12)" target="_blank">Vim模糊搜索插件ctrlp使用方法-Vim插件(12)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-gutentags.html" title="Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)" target="_blank">Vim自动生成tags插件vim-gutentags安装和自动跳转方法-Vim插件(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plug.html" title="Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)" target="_blank">Vim轻量高效插件管理神器vim-plug介绍-Vim插件(9)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-powerline.html" title="使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)" target="_blank">使用Powerline插件强化Vim状态栏及Powerline配置介绍-Vim插件(8)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-keycastow.html" title="windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)" target="_blank">windows显示键盘按键软件KeyCastOW录制vim视频教程-Vim入门教程(27)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-nerdtree-plugin.html" title="Vim插件NERD tree介绍与使用方法-Vim入门教程(26)" target="_blank">Vim插件NERD tree介绍与使用方法-Vim入门教程(26)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-surround-plugin.html" title="Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)" target="_blank">Vim插件surround安装方法介绍与使用方法-Vim入门教程(25)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-fswitch.html" title="Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)" target="_blank">Vim插件vim-fswitch实现同名文件快速切换-Vim入门教程(17)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ctag.html" title="Vim使用ctags实现函数跳转-Vim入门教程(13)" target="_blank">Vim使用ctags实现函数跳转-Vim入门教程(13)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-plugin-manager.html" title="Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)" target="_blank">Vim插件管理器Pathogen和Vundle简介 - Vim入门教程(8)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-color-schemes.html" title="15个著名的Vim配色方案整理-Vim入门教程(7)" target="_blank">15个著名的Vim配色方案整理-Vim入门教程(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-fzf安装方法"><span class="post-toc-text">1. fzf安装方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-fzf配置"><span class="post-toc-text">2. fzf配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-Vim-fzf使用方法"><span class="post-toc-text">3. Vim fzf使用方法</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-fzf-plugin.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>

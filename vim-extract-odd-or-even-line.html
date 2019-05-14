@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim处理文本之奇偶行删除-Vim使用技巧(17) | vim教程网</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Vim奇偶行分离,vim global,global命令原理,Vim教程网">
+   
+  
+  <meta name="description" content="global命令的原理是在指定的range范围内，标记所有匹配pattern的文本行，并对匹配的行逐行执行Ex命令，被标记的行被删除、移动或者合并后标记就会被移除而不再执行ex命令，:g/^/d|m.删除奇数行，:g/^/+d 删除偶数行。">
+  
+  
+  
+    <link rel="icon" href="/favicon.ico">
+   
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-110959862-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1da98d4022ae854472993757860bea91";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=1271843007&web_id=1271843007" language="JavaScript"></script>
+  </div>
+
+
+</head>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Vim教程">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-description">
+                    
+                    <h3>
+                        专注于Vim配置、插件、Vim命令和Vim教程
+                    </h3>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-vim-extract-odd-or-even-line" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vim处理文本之奇偶行删除-Vim使用技巧(17)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Vim技巧/">Vim技巧</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-user-secret"></i> <a href="https://vim.ink" target="_blank"> vimtutor </a>
+        </li>
+        <li>
+          <i class="fa fa-calendar"></i>  2016-04-15
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>对于一些简单的文本处理需求，使用Vim命令便可以快速实现。在<a href="">使用Vim提取文本内容</a>一文中，已经介绍了通过 <code>:vglobal</code> 命令来获取特定文本行以及使用 <code>:global</code> 命令将 CSS 文件中所有规则的属性按字母排序。</p>
+<p>本文继续介绍使用Vim的 <code>:global</code> 命令来提取所有奇数行或所有偶数行文本，达到奇偶行删除的目的。使用 <code>:normal</code> 命令实现奇偶行删除的内容，推荐阅读<a href="https://vim.ink/vim-extract-odd-or-even-line-2.html">Vim处理文本之使用normal命令实现奇偶行删除</a>。</p>
+<p>假设有一段如下的《泰坦尼克号》电影对白，需要分别提取出ROSE和JACK的所有台词，并分别保存到两个文件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ROSE: I love you Jack.</span><br><span class="line">JACK: No... don&apos;t say your good-byes, Rose. Don&apos;t you give up. Don&apos;t do it.</span><br><span class="line">ROSE: I&apos;m so cold.</span><br><span class="line">JACK: You&apos;re going to get out of this... you&apos;re going to go on and you&apos;re going to make babies and watch them grow and you&apos;re going to die an old lady, warm in your bed. Not here. Not this night. Do you understand me?</span><br><span class="line">ROSE: I can&apos;t feel my body.</span><br><span class="line">JACK: You must do me this honor... promise me you will survive... that you will never give up... no matter what happens... no matter how hopeless... promise me now, and never let go of that promise.</span><br><span class="line">ROSE: I promise.</span><br><span class="line">JACK: Never let go.</span><br><span class="line">ROSE: I promise. I will never let go, Jack. I&apos;ll never let go.</span><br></pre></td></tr></table></figure>
+<p>分析上面待处理的文本内容可以发现，ROSE的台词总是在 1、3、5、7等奇数行，而JACK的台词总在2、4、6、8等偶数行，两人的台词是奇偶行交替出现。</p>
+<p>因此，若想单独获取某个人的全部台词，实际上就是要<strong>提取出所有奇数行</strong>或者偶数行的台词。</p>
+<p>Vim命令 <code>:g/^/+d</code> 可以用来删除所有偶数行，而命令 <code>:g/^/d|m.</code> 可以用来删除所有奇数行。</p>
+<h4 id="1-g-d-删除偶数行"><a href="#1-g-d-删除偶数行" class="headerlink" title="1. :g/^/+d 删除偶数行"></a>1. <code>:g/^/+d</code> 删除偶数行</h4><p>下面，请跟我一起来分析上述两个简单的Vim命令行命令是如何实现奇偶行删除的功能的。</p>
+<p>从Vim教程网上的文章<a href="https://vim.ink/vim-global-command.html">Vim global命令和重复操作</a>可知，global 命令的基本格式为 <code>:[range]g[lobal][!]/{pattern}/[cmd]</code>。</p>
+<p>其中，<code>range</code> 表示操作范围，global命令缺省操作范围是整个文件；<code>pattern</code>  用于指定 global 命令要匹配的目标模式；<code>cmd</code> 则表示除 global 命令外的任何 Ex 命令。</p>
+<blockquote>
+<p>global 命令实现的效果是：在指定的 range 范围内，标记所有匹配 pattern 的文本行，并对匹配的行<strong>逐行执行</strong> cmd 命令。 </p>
+</blockquote>
+<p>对于命令 <code>:g/^/+d</code> 来说，range 是使用缺省值 (整个文档)；pattern 是 <code>^</code>，表示<strong>查找所有行的开头</strong>；而待执行的 Ex 命令为 <code>+d</code>，是Vim命令 <code>delete</code> 的缩写形式。</p>
+<p><code>:delete</code> 命令的完整格式为 <code>:[range]d[elete] [x]</code>，表示将 [range] 范围内的所有行删除到寄存器 <code>x</code> 中，缺省的 range 是<strong>当前行</strong>，<code>+d</code> 表示删除当前行的下一行。具体介绍可参考<a href="https://vim.ink/vim-ranges.html">Vim操作范围和文件范围</a>。</p>
+<p><strong>注</strong>：在Vim中，除 <code>global</code> 命令缺省操作范围为全文档外，其他 Ex 命令的缺省操作范围都是当前行。</p>
+<p>因此，当在Vim中执行 <code>:g/^/+d</code> 命令时，global 命令会从第一行开始执行，从而删除掉第二行。这时候，原本的第三行就会变成新的第二行，global 命令在新的第二行继续执行 <code>+d</code>，原本的第四行也会被删除掉……最终所有的偶数行都会被删除。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1fxacey5p54g20jr0aq775.gif" alt="vim-删除偶数行"></p>
+<h4 id="2-g-d-m-删除奇数行"><a href="#2-g-d-m-删除奇数行" class="headerlink" title="2. :g/^/d|m. 删除奇数行"></a>2. <code>:g/^/d|m.</code> 删除奇数行</h4><p>接下来分析 <code>:g/^/d|m.</code> 是如何删除掉文件中的所有奇数行。</p>
+<blockquote>
+<p>Vim在实际执行 <code>global</code> 命令时，会先查找所有匹配 {pattern} 的行，并<strong>对匹配结果进行标记</strong>，最后对每一个标记的行执行 <a href="https://vim.ink/vim-ex-command.html">Ex 命令</a>。</p>
+</blockquote>
+<p>但是，如果被标记的行被删除、移动或者合并，这个标记就会被移除，对于标记被移除的行，就不会执行 ex 命令。</p>
+<p><code>:g/^/d</code> 可以理解为 在当前整个文档中执行 <code>d</code> 命令；而 <code>|</code> 用来分割命令，用于在一个行中同时输入多个命令；<code>m</code> 是Vim命令行命令 <code>:move</code> 的缩写形式，完整格式为 <code>:[range]move{address}</code>，表示将 range 范围内的行文本移动到 address 指定的位置，<code>m.</code> 表示移动当前行(缺省range)到当前行(<code>.</code>)，实际上不会造成任何文本变化。参考<a href="https://vim.ink/vim-copy-move-command.html">Vim复制命令copy和移动命令move</a>。</p>
+<p>这个操作看起来很怪，其实是为了在执行完 <code>d</code> 操作后，移除下一行被global命令的 pattern 打上的标记，从而避免该行被执行 <code>d</code> 操作。</p>
+<p>因此，<code>:g/^/+d</code> 命令首先对匹配的第一行执行删除操作，继续执行下一处匹配(即第二行)时，由于执行了 <code>move</code> 操作，global命令就会跳过这个新的 第一行，而是从 <strong>下下一行</strong> 再次执行 <code>d</code>命令，如此类推。最终删除掉原始文件中的所有奇数行。</p>
+<p><img src="https://image.vim.ink/images/691e0c29gy1fxacexrb2xg20jr0argnq.gif" alt="vim删除奇数行"></p>
+<h4 id="3-小结"><a href="#3-小结" class="headerlink" title="3. 小结"></a>3. 小结</h4><p>介绍了使用Vim <code>:global</code> 命令来实现奇偶行删除或奇偶行分离，重点需要理解 global 命令的执行原理和执行流程：global 命令会在指定的 range 范围内，<strong>标记</strong>所有匹配 pattern 的文本行，并对匹配的行<strong>逐行</strong>执行 Ex 命令。</p>
+<p>此外，除 global 命令缺省操作范围为全文档外，Vim 其他 Ex 命令的缺省操作范围都是当前行。</p>
+<p>这篇文章的主题基于知乎网友zecy写的一篇专栏文章而进行创作，特在此表示感谢。</p>
+
+            <div>
+                <img style="padding-top:0" src="/images/qrcode.jpg">
+                <p style="text-align:center;font-szie:100%;margin:0">嗯，扫一扫就可以找到小女子我啦~</p>
+            </div>
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list in" id="share-list" style="visibility: visible;">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://vim.ink/vim-extract-odd-or-even-line.html&title=《Vim处理文本之奇偶行删除-Vim使用技巧(17)》 — vim教程网&pic=images/vim63.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://vim.ink/vim-extract-odd-or-even-line.html&title=《Vim处理文本之奇偶行删除-Vim使用技巧(17)》 — vim教程网&source=vim教程网专注于vim配置、插件、Vim命令和视频教程，提供vim中文教程、教程视频和vim使用技巧" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://vim.ink/vim-extract-odd-or-even-line.html" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vim处理文本之奇偶行删除-Vim使用技巧(17)》 — vim教程网&url=https://vim.ink/vim-extract-odd-or-even-line.html&via=https://vim.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://vim.ink/vim-extract-odd-or-even-line.html" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://vim.ink/vim-extract-odd-or-even-line.html" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+            <div class="similar_block_title">
+            相关文章推荐
+            </div>
+            <div class="similar_wrap tracking-ad" data-mod="popu_36" style="max-height:250px">                       
+                <ul class="similar_list fl">
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-source-command.html" title="使用Vim的source命令辅助完成新浪微博图片迁移" target="_blank">使用Vim的source命令辅助完成新浪微博图片迁移</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-insert-mode-tips.html" title="Vim实用技巧-插入模式实用技巧" target="_blank">Vim实用技巧-插入模式实用技巧</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-ide-base.html" title="将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)" target="_blank">将Vim打造成IDE编辑器(基础)-Vim使用技巧(19)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-extract-odd-or-even-line-2.html" title="Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)" target="_blank">Vim处理文本之使用normal命令实现奇偶行删除-Vim使用技巧(18)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-search-offset.html" title="Vim查找偏移-Vim使用技巧(16)" target="_blank">Vim查找偏移-Vim使用技巧(16)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-delete_m.html" title="怎么删除Vim文件中显示的^M字符-Vim技巧(15)" target="_blank">怎么删除Vim文件中显示的^M字符-Vim技巧(15)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-write-file.html" title="怎么合适地使用Vim保存文件？-Vim使用技巧(13)" target="_blank">怎么合适地使用Vim保存文件？-Vim使用技巧(13)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-recovery-cusor-position.html" title="Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)" target="_blank">Vim使用位置标记实现打开文件自动恢复上次的光标位置-Vim使用技巧(12)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-column-edit.html" title="Vim可视化模式与面向列编辑文本-Vim使用技巧(11)" target="_blank">Vim可视化模式与面向列编辑文本-Vim使用技巧(11)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-repeat-operation.html" title="Vim中的重复操作与高效率-Vim使用技巧(10)" target="_blank">Vim中的重复操作与高效率-Vim使用技巧(10)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-process-file.html" title="使用Vim处理文本-Vim使用技巧(9)" target="_blank">使用Vim处理文本-Vim使用技巧(9)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-tips.html" title="30个Vim常用命令和使用技巧整理 (长期更新)" target="_blank">30个Vim常用命令和使用技巧整理 (长期更新)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-edit-and-wrie-file.html" title="Vim打开和保存文件-Vim使用技巧(7)" target="_blank">Vim打开和保存文件-Vim使用技巧(7)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-seven-effective-ways.html" title="7种提高工作效率的Vim操作-Vim使用技巧(6)" target="_blank">7种提高工作效率的Vim操作-Vim使用技巧(6)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/install-vim-and-vimcdoc.html" title="vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)" target="_blank">vim8安装教程和vim中文帮助文档Vimcdoc安装方法-Vim使用技巧(5)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-indent.html" title="Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)" target="_blank">Vim自动缩进配置、原理和tab键替换空格-Vim使用技巧(4)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-cursorline-column.html" title="Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)" target="_blank">Vim快速跳转任意行、任意列以及高亮显示当前行、当前列方法-Vim使用技巧(3)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-comment-uncomment-lines.html" title="Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)" target="_blank">Vim快速注释/取消注释多行的几种方法-Vim使用技巧(2)</a>
+                            </li>
+                        
+                    
+                        
+                            <li>
+                                <em>•</em>
+                                <a href="https://vim.ink/vim-clear-last-search-hightlight.html" title="Vim清除上次的搜索高亮结果-Vim使用技巧(1)" target="_blank">Vim清除上次的搜索高亮结果-Vim使用技巧(1)</a>
+                            </li>
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                                
+                    <li>
+                </ul>
+            </div>
+        
+    </footer>      
+
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-g-d-删除偶数行"><span class="post-toc-text">1. :g/^/+d 删除偶数行</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-g-d-m-删除奇数行"><span class="post-toc-text">2. :g/^/d|m. 删除奇数行</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-小结"><span class="post-toc-text">3. 小结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+
+    
+        <div id="gitcomment"></div>
+<link rel="stylesheet" href="/css/gitment.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'vim-extract-odd-or-even-line.html',
+  owner: 'vimtutor',
+  repo: 'gitment',
+  oauth: {
+    client_id: '36b39ec86101882e2146',
+    client_secret: 'ad6f606667af5d438bb5086b91428c9bd416f1de',
+  },
+})
+gitment.render('gitcomment')
+</script>
+    
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+    
+        <p>
+        &copy; 2013-2019 <a href="https://vim.ink" target="_blank">vim教程网</a>
+      </p>
+    
+      <p>
+      <a href="https://vim.ink/sitemap.xml" target="_blank" style="color: #999;">sitemap</a>  <a href="https://vim.ink/baidusitemap.xml" target="_blank" style="color: #999;">baidusitemap</a>
+      </p>
+    
+    
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://vim.ink",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="搜索">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+  </div>
+</body>
+</html>
